@@ -1,5 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+// Declare variables
+int menuChoice;
+int guess;
+int randomNumber;
+int maxNumber = 100;
+int maxGuesses = 0;
+int usedGuesses = 0;
 
 int clrScrn() {
     // Screen clear fucntion, checks OS first for compatibility:tm:
@@ -11,9 +20,17 @@ int clrScrn() {
     #endif
 }
 
-
 int PlayGame() {
-    printf("This worked\n");
+    // Get the random number, seed is taken from the time
+    srand(time(0));
+    randomNumber = rand() % maxNumber;
+    printf("This worked: %d\n", randomNumber);
+    // Start the game
+    clrScrn();
+    usedGuesses = 0;
+    printf("I'm thinking of a number between 1 and %d\n", randomNumber);
+    printf("Enter your guess:");
+    
 }
 
 int GameSettings() {
@@ -21,17 +38,7 @@ int GameSettings() {
 }
 
 int main() {
-
-    // Declare variables
-    int menuChoice;
-    int guess;
-    int randomNumber;
-    int maxNumber = 0;
-    int maxGuesses = 0;
-    int usedGuesses = 0;
-
     clrScrn();    
-    
     // Welcome
     printf("Welcome to Guess My Number! (theVault C Edition)\n");
     printf("Press ENTER to begin.\n");
