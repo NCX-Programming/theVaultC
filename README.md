@@ -8,7 +8,7 @@ Unlike the old Vault, theVaultC does get relases, however they can often be out 
 Our makefile uses gcc for Linux, and mingw for Windows.
 You can get both on a system with apt by typing:
 `sudo apt install gcc mingw`
-gcc is used for Linx, and mingw is used for Windows. You do not need to have both to compile.
+gcc is used for Linux, and mingw is used for Windows. You do not need to have both to compile.
 ### Compiling for all target platforms
 To compile for Linux, Win32, and Win64, just use `make` or `make all`. All files will be outputted to a bin folder that will be created inside of your current directory.
 ### Compiling for Linux only
