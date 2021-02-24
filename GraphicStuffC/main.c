@@ -75,13 +75,19 @@ int Menu(){
 int main(){
     clrScrn();
     // Draw main screen
+    #ifdef __APPLE__
+        printf("\e[0;97m\e[100m===============================\n");
+    #endif
     printf("\e[0;97m\e[40m===============================\n");
     printf("|       'Graphics' Test       |\n");
     printf("|           theVault          |\n");
     printf("|                             |\n");
     printf("|   ");
     // White highlighted section
-    printf("\e[0;30m\e[47mPress ENTER to continue\e[0;97m\e[40m");
+    #ifdef __APPLE__
+        printf("\e[0;30m\e[107mPress ENTER to continue\e[0;97m\e[100m");
+    #endif
+    printf("\e[0;30m\e[107mPress ENTER to continue\e[0;97m\e[40m");
     printf("   |\n");
     // End of white highlighted section
     printf("|                             |\n");
