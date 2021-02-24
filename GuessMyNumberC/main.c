@@ -32,10 +32,11 @@ int CheckAnswer() {
         clrScrn();
         printf("Congratulations! You guessed the right number in %d guesses!\n", usedGuesses);
         printf("Play again? y/n ");
-        menuChoice=0;
-        menuChoice=fgetc(stdin);
-        if(menuChoice==89) PlayGame();
-        if(menuChoice==78) exit(0);
+        while (menuChoice!=0){
+            menuChoice=0;
+            menuChoice=fgetc(stdin);
+            if(menuChoice==89||menuChoice==121) PlayGame();
+            if(menuChoice==78||menuChoice==110) exit(0); }
     }
     // Answer too large
     if(guess>randomNumber){
@@ -55,14 +56,15 @@ int GuessAgain() {
     // Check if there are any guesses remaining
     if(usedGuesses==maxGuesses){
         // Game over; no more guesses
-        //clrScrn();
+        clrScrn();
         printf("Game Over!\n");
         printf("You were unable to guess the number in %d guesses\n", maxGuesses);
-        printf("Play again? y/n\n");
-        menuChoice=0;
-        menuChoice=fgetc(stdin);
-        if(menuChoice==89) PlayGame();
-        if(menuChoice==78) exit(0);
+        printf("Play again? y/n ");
+        while(menuChoice!=0){
+            menuChoice=0;
+            menuChoice=fgetc(stdin);
+            if(menuChoice==89||menuChoice==121) PlayGame();
+            if(menuChoice==78||menuChoice==110) exit(0); }
     }else{
         // Repeating guess code
         sleep(1);
@@ -110,8 +112,7 @@ int main() {
     printf("Select an option by pressing the number on your keyboard.\n");
     printf("1. Play     2. Game Settings     3. Exit\n");    
     menuChoice =fgetc(stdin);
-    if(menuChoice == 49) PlayGame();
-    if(menuChoice == 50) GameSettings();
-    if(menuChoice == 51) exit(0);
+    if(menuChoice==49) PlayGame();
+    if(menuChoice==50) GameSettings();
+    if(menuChoice==51) exit(0);
 }
-
