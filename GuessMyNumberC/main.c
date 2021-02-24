@@ -20,11 +20,8 @@ int clrScrn() {
     #ifdef _WIN32
         system("cls");
     #endif
-    #ifdef linux
+    #ifdef unix
         system("clear");
-    #endif
-    #ifdef darwin
-        system( "clear" );
     #endif
 }
 int CheckAnswer() {
@@ -75,7 +72,6 @@ int GuessAgain() {
         usedGuesses++;
         CheckAnswer();
     }
-    
 }
 int PlayGame() {
     // Fix unset variables
