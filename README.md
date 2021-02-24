@@ -15,5 +15,7 @@ To compile for Linux, Win32, and Win64, just use `make` or `make all`. All files
 To compile for Linux only, use `make linux`. The program will be outputted to a bin folder that will be created inside of your current directory.
 ### Compiling for Windows only
 To compile for Windows only, either use `make win32` or `make win64` to compile a 32 or 64 bit version of the program, respectively. The program will be outputted to a bin folder that will be created inside of your current directory.
+### Compiling for MacOS only
+To compile for MacOS only, either use `make macX86` or `make macARM` depending on what procceser you have. MacOS is currently only able to compile on macOS, but you need the same compiler that is used on Linux; gcc. You can install it with brew by typing: `brew install gcc`.
 ### Removing build files
 If you want to remove the bin folder and all of the builds, use `make clean`.
