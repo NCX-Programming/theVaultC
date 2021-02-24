@@ -76,18 +76,20 @@ int main(){
     clrScrn();
     // Draw main screen
     #ifdef __APPLE__
-        printf("\e[0;97m\e[100m===============================\n");
+        printf("\e[0;97m===============================\n");
+    #else
+        printf("\e[0;97m\e[40m===============================\n");
     #endif
-    printf("\e[0;97m\e[40m===============================\n");
     printf("|       'Graphics' Test       |\n");
     printf("|           theVault          |\n");
     printf("|                             |\n");
     printf("|   ");
     // White highlighted section
     #ifdef __APPLE__
-        printf("\e[0;30m\e[107mPress ENTER to continue\e[0;97m\e[100m");
+        printf("\e[0;30m\e[107mPress ENTER to continue\e[0m");
+    #else
+        printf("\e[0;30m\e[107mPress ENTER to continue\e[0;97m\e[40m");
     #endif
-    printf("\e[0;30m\e[107mPress ENTER to continue\e[0;97m\e[40m");
     printf("   |\n");
     // End of white highlighted section
     printf("|                             |\n");
