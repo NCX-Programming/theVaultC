@@ -23,6 +23,9 @@ int clrScrn() {
     #ifdef linux
         system("clear");
     #endif
+    #ifdef darwin
+        system( "clear" );
+    #endif
 }
 int CheckAnswer() {
     // Correct answer
