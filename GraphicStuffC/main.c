@@ -36,11 +36,17 @@ int Colors(){
     printf("\e[0;94mBlue\n");
     printf("\e[0;95mMagenta\n");
     printf("\e[0;96mCyan\n");
-    printf("\e[0;97mHigh Intensity White\n");
-    printf("\e[0;37mWhite\n");
-    sleep(1);
-    // Output all available foreground colors
-
+    printf("\e[0;97mHigh-Intensity White\n");
+    #ifdef __APPLE__
+        printf("\e[0;37mWhite\e[0m\n");
+    #else  
+        printf("\e[0;37mWhite\e[0;97m\e[40m\n");
+    #endif
+    sleep(3);
+    printf("Press ENTER To Return to the Main Menu\n");
+    getchar();
+    getchar();
+    Menu();
 }
 int Menu(){
     clrScrn();
