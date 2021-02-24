@@ -36,7 +36,7 @@ int Colors(){
     printf("\e[0;94mBlue\n");
     printf("\e[0;95mMagenta\n");
     printf("\e[0;96mCyan\n");
-    printf("\e[0;97mHigh Intesnity White\n");
+    printf("\e[0;97mHigh Intensity White\n");
     printf("\e[0;37mWhite\n");
     sleep(1);
     // Output all available foreground colors
@@ -75,13 +75,13 @@ int Menu(){
 int main(){
     clrScrn();
     // Draw main screen
-    printf("===============================\n");
+    printf("\e[0;97m\e[40m===============================\n");
     printf("|       'Graphics' Test       |\n");
     printf("|           theVault          |\n");
     printf("|                             |\n");
     printf("|   ");
     // White highlighted section
-    printf("\e[0;30m\e[47mPress ENTER to continue\e[0;37m\e[40m");
+    printf("\e[0;30m\e[47mPress ENTER to continue\e[0;97m\e[40m");
     printf("   |\n");
     // End of white highlighted section
     printf("|                             |\n");
