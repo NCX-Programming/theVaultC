@@ -23,6 +23,9 @@ int clrScrn() {
     #ifdef unix
         system("clear");
     #endif
+    #ifdef __APPLE__
+        system( "clear" );
+    #endif
 }
 int CheckAnswer() {
     // Correct answer

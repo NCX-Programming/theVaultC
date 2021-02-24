@@ -14,6 +14,9 @@ int clrScrn() {
     #ifdef unix
         system("clear");
     #endif
+    #ifdef __APPLE__
+        system( "clear" );
+    #endif
 }
 int Colors(){
     clrScrn();
