@@ -1,7 +1,7 @@
 # theVaultC
-An updated and upgraded version of theVault, now in C. Available for Windows and Linux.
+An updated and upgraded version of theVault, now in C. Available for Windows, Linux, and Intel Macs.
 ### The (new!) greatest jumble of cross-platform C shenanigans around.
-And yes, cross platform. All projects contained in theVaultC are guarenteed to work on 32-bit Windows, 64-bit Windows and Linux. Somewhat compatible with macOS, but it is not guarenteed.
+And yes, cross platform. All projects contained in theVaultC are guarenteed to work on 32-bit Windows, 64-bit Windows and Linux. Mostly compatible with macOS, however it is only available on Intel Macs, and possibly through Rosetta 2 on ARM Macs however that has not been tested.
 ## Compiling and Running
 Unlike the old Vault, theVaultC does get relases, however they can often be out of date and you'll want to compile it yourself. A makefile has been provided for your convience.
 # Before Starting, you'll need the proper compiler for your target system
