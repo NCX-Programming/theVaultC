@@ -37,13 +37,28 @@ int Colors(){
     printf("\e[0;95mMagenta\n");
     printf("\e[0;96mCyan\n");
     printf("\e[0;97mHigh-Intensity White\n");
-    #ifdef __APPLE__
-        printf("\e[0;37mWhite\e[0m\n");
-    #else  
-        printf("\e[0;37mWhite\e[0;97m\e[40m\n");
-    #endif
+    printf("\e[0;37mWhite\e[0m\n");
     sleep(3);
     printf("Press ENTER To Return to the Main Menu\n");
+    getchar();
+    getchar();
+    Menu();
+}
+int About(){
+    clrScrn();
+    // Draw about screen
+    printf("==============================\n");
+    printf("|      'Graphics' Test       |\n");
+    printf("|         theVaultC          |\n");
+    printf("|                            |\n");
+    printf("|     © NinjaCheetah 2021    |\n");
+    printf("|   © NCX-Programming 2021   |\n");
+    printf("|                            |\n");
+    printf("|Thanks for actually stopping|\n");
+    printf("|       to read this :p      |\n");
+    printf("|                            |\n");
+    printf("|   Press ENTER to go back   |\n");
+    printf("==============================\n");
     getchar();
     getchar();
     Menu();
@@ -74,28 +89,20 @@ int Menu(){
         if(menuChoice==49) Colors();
         if(menuChoice==50){}
         if(menuChoice==51){}
-        if(menuChoice==52){}
+        if(menuChoice==52) About();
         if(menuChoice==53) exit(0);
     }
 }
 int main(){
     clrScrn();
     // Draw main screen
-    #ifdef __APPLE__
-        printf("\e[0;97m===============================\n");
-    #else
-        printf("\e[0;97m\e[40m===============================\n");
-    #endif
+    printf("\e[0;97m===============================\n");
     printf("|       'Graphics' Test       |\n");
-    printf("|           theVault          |\n");
+    printf("|          theVaultC          |\n");
     printf("|                             |\n");
     printf("|   ");
     // White highlighted section
-    #ifdef __APPLE__
-        printf("\e[0;30m\e[107mPress ENTER to continue\e[0m");
-    #else
-        printf("\e[0;30m\e[107mPress ENTER to continue\e[0;97m\e[40m");
-    #endif
+    printf("\e[0;30m\e[107mPress ENTER to continue\e[0m");
     printf("   |\n");
     // End of white highlighted section
     printf("|                             |\n");
