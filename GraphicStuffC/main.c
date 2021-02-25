@@ -44,6 +44,58 @@ int Colors(){
     getchar();
     Menu();
 }
+int MenuTests(){
+    // Explain example 1
+    clrScrn();
+    printf("Example 1, a message box\n");
+    sleep(2);
+    // Draw example 1
+    clrScrn();
+    printf("*====================================*\n");
+    printf("|            Message Box             |\n");
+    printf("*====================================*\n");
+    printf("|                                    |\n");
+    printf("|         I'm a message box!         |\n");
+    printf("|                                    |\n");
+    printf("|                                    |\n");
+    printf("|  1. Ok                  2. Cancel  |\n");
+    printf("*====================================*\n");
+    // Wait briefly, and then prompt to continue
+    sleep(2);
+    printf("Press ENTER to continue\n");
+    getchar();
+    getchar();
+    // Explain example 2
+    clrScrn();
+    printf("Example 2, a selection menu\n");
+    sleep(2);
+    // Draw example 2
+    clrScrn();
+    printf("*====================================*\n");
+    printf("| Example Title                      |\n");
+    printf("*=======*============================*\n");
+    printf("|       |                            |\n");
+    printf("|  (1)  |   Example Item 1           |\n");
+    printf("|       |                            |\n");
+    printf("|  (2)  |   Example Item 2           |\n");
+    printf("|       |                            |\n");
+    printf("|  (3)  |   Example Item 3           |\n");
+    printf("|       |                            |\n");
+    printf("|  (4)  |   Example Item 4           |\n");
+    printf("|       |                            |\n");
+    printf("|  (5)  |   Example Item 5           |\n");
+    printf("|       |                            |\n");
+    printf("|  (6)  |   Example Item 6           |\n");
+    printf("|       |                            |\n");
+    printf("|  (7)  |   Example Item 7           |\n");
+    printf("|       |                            |\n");
+    printf("*=======*============================*\n");
+    // Wait briefly, and then prompt to continue
+    sleep(2);
+    printf("Press ENTER to continue\n");
+    getchar();
+    Menu();
+}
 int About(){
     clrScrn();
     // Draw about screen
@@ -87,7 +139,7 @@ int Menu(){
         menuChoice=fgetc(stdin);
         // Get settings menu choice
         if(menuChoice==49) Colors();
-        if(menuChoice==50){}
+        if(menuChoice==50) MenuTests();
         if(menuChoice==51){}
         if(menuChoice==52) About();
         if(menuChoice==53) exit(0);
