@@ -114,25 +114,25 @@ int GameSettings() {
                 printf("Enter the max number, must be positive, larger than 1, and an integer:\n");
                 // Read input and convert to integer
                 scanf("%s",maxNumStr);
-                maxNumber=atoi(maxNumStr);
+                maxNumber=atoi(maxNumStr); }
                 // Output new max number and return to settings
                 clrScrn();
                 printf("Max number set to %d\n",maxNumber); 
                 sleep(1);
-                GameSettings(); }
+                GameSettings();
         }if(menuChoice==50) {
             // Set max guesses
             while(maxGuesses<=0){
                 clrScrn();
-                printf("Enter the max number of guesses, must be positive and an integer:\n");
+                printf("Enter the max number of guesses, must be positive, at least 1, and an integer:\n");
                 // Read input and convert to integer
                 scanf("%s",maxGuessStr);
-                maxGuesses=atoi(maxGuessStr);
+                maxGuesses=atoi(maxGuessStr); }
                 // Output new max number and return to settings
                 clrScrn();
                 printf("Max guesses set to %d\n",maxGuesses);
                 sleep(1);
-                GameSettings(); }
+                GameSettings(); 
         }if(menuChoice==51) PlayGame(); }
 }
 int main() {
