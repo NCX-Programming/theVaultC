@@ -19,7 +19,7 @@ win64:
 macX86:
 	mkdir -p bin/
 	gcc -o bin/graphicStuffX86 -target x86_64-apple-macos10.12 GraphicStuffC/main.c
-	gcc -o bin/guessMyNumberX86 -target x86_64-apple-macos10.12 GuessMyNumber/main.c
+	gcc -o bin/guessMyNumberX86 -target x86_64-apple-macos10.12 GuessMyNumberC/main.c
 
 macARM:
 	mkdir -p bin/
