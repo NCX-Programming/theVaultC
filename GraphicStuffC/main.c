@@ -1,3 +1,6 @@
+//theVaultC/GraphicStuffC "main.c"
+//Copyright (C) 2021 NinjaCheetah
+//Copyright (C) 2021 NCX-Programming
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
