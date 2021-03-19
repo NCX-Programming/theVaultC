@@ -1,9 +1,12 @@
+CC = gcc
+
 all: linux win32 win64
 
 linux:
 	mkdir -p bin/
-	gcc GraphicStuffC/main.c -o bin/graphicStuff
-	gcc GuessMyNumberC/main.c -o bin/guessMyNumber
+	$(CC) GraphicStuffC/main.c -o bin/graphicStuff
+	$(CC) GuessMyNumberC/main.c -o bin/guessMyNumber
+	$(CC) PrintUnixTime/main.c -o bin/UnixTime
 
 win32:
 	mkdir -p bin/
@@ -18,13 +21,15 @@ win64:
 # Note that the mac executables can only be compiled on mac
 macX86:
 	mkdir -p bin/
-	gcc -o bin/graphicStuffX86 -target x86_64-apple-macos10.12 GraphicStuffC/main.c
-	gcc -o bin/guessMyNumberX86 -target x86_64-apple-macos10.12 GuessMyNumberC/main.c
+	$(CC) -o bin/graphicStuffX86 -target x86_64-apple-macos10.12 GraphicStuffC/main.c
+	$(CC) -o bin/guessMyNumberX86 -target x86_64-apple-macos10.12 GuessMyNumberC/main.c
+	$(CC) -o bin/UnixTime -target x86_64-apple-macos10.12 PrintUnixTime/main.c
 
 macARM:
 	mkdir -p bin/
-	gcc -o bin/graphicStuffARM -target arm64-apple-macos11 GraphicStuffC/main.c
-	gcc -o bin/guessMyNumberARM -target arm64-apple-macos11 GuessMyNumberC/main.c
+	$(CC) -o bin/graphicStuffARM -target arm64-apple-macos11 GraphicStuffC/main.c
+	$(CC) -o bin/guessMyNumberARM -target arm64-apple-macos11 GuessMyNumberC/main.c
+	$(CC) -o bin/UnixTime -target arm64-apple-macos11 PrintUnixTime/main.c
 
 clean:
 	rm -f bin/* rm -d bin/

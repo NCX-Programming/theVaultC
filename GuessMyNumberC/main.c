@@ -14,9 +14,9 @@ int maxGuesses = 0;
 int usedGuesses = 0;
 char guessString[30];
 // Declare functions
-int GuessAgain();
-int CheckAnswer();
-int PlayGame();
+void GuessAgain();
+void CheckAnswer();
+void PlayGame();
 // Code start
 int clrScrn() {
     // Screen clear fucntion, checks OS first for compatibility:tm:
@@ -30,7 +30,7 @@ int clrScrn() {
         system( "clear" );
     #endif
 }
-int CheckAnswer() {
+void CheckAnswer() {
     // Correct answer
     if(guess==randomNumber){
         clrScrn();
@@ -55,7 +55,7 @@ int CheckAnswer() {
         GuessAgain();
     }
 }
-int GuessAgain() {
+void GuessAgain() {
     // Check if there are any guesses remaining
     if(usedGuesses==maxGuesses){
         // Game over; no more guesses
@@ -79,7 +79,7 @@ int GuessAgain() {
         CheckAnswer();
     }
 }
-int PlayGame() {
+void PlayGame() {
     // Fix unset variables
     if(maxGuesses==0) maxGuesses=10;
     if(maxNumber==0) maxNumber=100;
@@ -97,7 +97,7 @@ int PlayGame() {
     usedGuesses++;
     CheckAnswer();
 }
-int GameSettings() {
+void GameSettings() {
     // Declare temp string variables
     char maxNumStr[30];
     char maxGuessStr[30];
@@ -120,7 +120,7 @@ int GameSettings() {
                 maxNumber=atoi(maxNumStr); }
                 // Output new max number and return to settings
                 clrScrn();
-                printf("Max number set to %d\n",maxNumber); 
+                printf("Max number set to %d\n",maxNumber);
                 sleep(1);
                 GameSettings();
         }if(menuChoice==50) {
@@ -135,11 +135,11 @@ int GameSettings() {
                 clrScrn();
                 printf("Max guesses set to %d\n",maxGuesses);
                 sleep(1);
-                GameSettings(); 
+                GameSettings();
         }if(menuChoice==51) PlayGame(); }
 }
-int main() {
-    clrScrn();    
+int main(void) {
+    clrScrn();
     // Welcome
     printf("Welcome to Guess My Number! (theVault C Edition)\n");
     printf("Press ENTER to begin.\n");
@@ -148,7 +148,7 @@ int main() {
     clrScrn();
     printf("Main Menu\n");
     printf("Select an option by pressing the number on your keyboard.\n");
-    printf("1. Play     2. Game Settings     3. Exit\n");    
+    printf("1. Play     2. Game Settings     3. Exit\n");
     menuChoice =fgetc(stdin);
     if(menuChoice==49) PlayGame();
     if(menuChoice==50) GameSettings();

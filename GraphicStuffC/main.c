@@ -7,7 +7,7 @@
 // Declare variables
 int menuChoice=1;
 // Declare functions that need to always be accessible
-int Menu();
+void Menu();
 // Start code
 int clrScrn() {
     // Screen clear fucntion, checks OS first for compatibility:tm:
@@ -21,7 +21,7 @@ int clrScrn() {
         system( "clear" );
     #endif
 }
-int Colors(){
+void Colors(){
     clrScrn();
     // Output all available foreground colors
     printf("Foreground Colors:\n");
@@ -47,7 +47,7 @@ int Colors(){
     getchar();
     Menu();
 }
-int MenuTests(){
+void MenuTests(){
     // Explain example 1
     clrScrn();
     printf("Example 1, a message box\n");
@@ -99,7 +99,7 @@ int MenuTests(){
     getchar();
     Menu();
 }
-int About(){
+void About(){
     clrScrn();
     // Draw about screen
     printf("==============================\n");
@@ -118,7 +118,7 @@ int About(){
     getchar();
     Menu();
 }
-int Menu(){
+void Menu(){
     clrScrn();
     // Draw example selection menu
     printf("============================================================\n");
@@ -148,7 +148,7 @@ int Menu(){
         if(menuChoice==53) exit(0);
     }
 }
-int main(){
+int main(void){
     clrScrn();
     // Draw main screen
     printf("\e[0;97m===============================\n");
