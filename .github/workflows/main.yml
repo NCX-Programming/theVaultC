@@ -12,11 +12,25 @@ jobs:
   build-linux:
 
     runs-on: ubuntu-latest
-
+    outputs:
+      commit_tag: ${{ steps.build-linux.outputs.commit_tag }}
+      commit_hash: ${{ steps.build-linux.outputs.commit_hash }}
+      author_name: ${{ steps.build-linux.outputs.author_name }}
+      committer_name: ${{ steps.build-linux.outputs.committer_name }}
+      commit_subject: ${{ steps.build-linux.outputs.commit_subject }}
+      commit_message: ${{ steps.build-linux.outputs.commit_message }}
     steps:
     - uses: actions/checkout@v2
     - name: Build Linux
-      run: make linux
+      run: |
+        make linux
+
+        echo ::set-output name=commit_tag::$(git describe --abbrev=0 --tags)
+        echo ::set-output name=commit_hash::$(git log --format=%h -1)
+        echo "::set-output name=author_name::$(git log -1 $GITHUB_SHA --pretty=%aN)"
+        echo "::set-output name=committer_name::$(git log -1 $GITHUB_SHA --pretty=%cN)"
+        echo "::set-output name=commit_subject::$(git log -1 $GITHUB_SHA --pretty=%s)"
+        echo "::set-output name=commit_message::$(git log -1 $GITHUB_SHA --pretty=%b)"
     - name: Pack Build Files
       run: |
         mkdir ~/theVaultC-linux
@@ -61,3 +75,27 @@ jobs:
       #with:
         #path: ~/theVaultC-macARM
         #name: theVaultC-macARM
+  send_webhook:
+      runs-on: ubuntu-latest
+      needs: [build-linux, build-macos-intel]
+      name: Send Discord webhook
+      if: ${{ !startsWith(github.ref, 'refs/pull') }}
+      env:
+        AUTHOR_NAME: ${{ needs.build-linux.outputs.author_name }}
+        COMMITTER_NAME: ${{ needs.build-linux.outputs.committer_name }}
+        COMMIT_SUBJECT: ${{ needs.build-linux.outputs.commit_subject }}
+        COMMIT_MESSAGE: ${{ needs.build-linux.outputs.commit_message }}
+      steps:
+        - name: Send success webhook
+          if: ${{ success() }}
+          run: |
+            curl -o send.sh https://raw.githubusercontent.com/NCX-Programming/discord-webhooks/master/send-ghactions.sh
+            chmod +x send.sh
+            ./send.sh success ${{ secrets.WEBHOOK_URL }}
+        - name: Send failure webhook
+          if: ${{ failure() }}
+          run: |
+            curl -o send.sh https://raw.githubusercontent.com/NCX-Programming/discord-webhooks/master/send-ghactions.sh
+            chmod +x send.sh
+            ./send.sh failure ${{ secrets.WEBHOOK_URL }}
+            
