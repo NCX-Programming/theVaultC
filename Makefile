@@ -46,4 +46,4 @@ macARM:
 	$(CC) -target arm64-apple-macos11 $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)ARM
 
 clean:
-	rm -f bin/* rm -rf bin/
+	rm -rf bin/
