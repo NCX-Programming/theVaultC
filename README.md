@@ -17,6 +17,6 @@ To compile for Linux only, use `make linux`. The program will be outputted to a 
 ### Compiling for Windows
 To compile for Windows only, either use `make win32` or `make win64` to compile a 32 or 64 bit version of the program, respectively. The program will be outputted to a bin folder that will be created inside of your current directory.
 ### Compiling for macOS
-To compile for MacOS only, either use `make macX86` or `make macARM` depending on what procceser you have. You can only compile macOS binaries on macOS, and you can also only compile x86 builds on x86 Macs and ARM builds on ARM Macs.
+To compile for MacOS only, either use `make mac` or `make macARM` depending on what procceser you have (`mac` on its own is for X86 Macs). You can only compile macOS binaries on macOS, and you can also only compile x86 builds on x86 Macs and ARM builds on ARM Macs.
 ### Removing build files
 If you want to remove the bin folder and all of the builds, use `make clean`.
