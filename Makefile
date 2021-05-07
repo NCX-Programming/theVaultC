@@ -7,6 +7,7 @@ linux:
 	$(CC) GraphicStuffC/main.c -o bin/graphicStuff
 	$(CC) GuessMyNumberC/main.c -o bin/guessMyNumber
 	$(CC) PrintUnixTime/main.c -o bin/UnixTime
+	$(CC) RainbowType/main.c -lncurses -o bin/RainbowType
 
 win32:
 	mkdir -p bin/
@@ -25,15 +26,17 @@ win64:
 # and ARM builds can only be compiled on ARM Macs.
 macX86:
 	mkdir -p bin/
-	$(CC) -o bin/graphicStuffX86 -target x86_64-apple-macos10.12 GraphicStuffC/main.c
-	$(CC) -o bin/guessMyNumberX86 -target x86_64-apple-macos10.12 GuessMyNumberC/main.c
-	$(CC) -o bin/UnixTime -target x86_64-apple-macos10.12 PrintUnixTime/main.c
+	$(CC) -target x86_64-apple-macos10.12 GraphicStuffC/main.c -o bin/graphicStuffX86
+	$(CC) -target x86_64-apple-macos10.12 GuessMyNumberC/main.c -o bin/guessMyNumberX86
+	$(CC) -target x86_64-apple-macos10.12 PrintUnixTime/main.c -o bin/UnixTime
+	$(CC) -target x86_64-apple-macos10.12 RainbowType/main.c -lncurses -o bin/RainbowType
 
 macARM:
 	mkdir -p bin/
-	$(CC) -o bin/graphicStuffARM -target arm64-apple-macos11 GraphicStuffC/main.c
-	$(CC) -o bin/guessMyNumberARM -target arm64-apple-macos11 GuessMyNumberC/main.c
-	$(CC) -o bin/UnixTime -target arm64-apple-macos11 PrintUnixTime/main.c
+	$(CC) -target arm64-apple-macos11 GraphicStuffC/main.c -o bin/graphicStuffARM
+	$(CC) -target arm64-apple-macos11 GuessMyNumberC/main.c -o bin/guessMyNumberARM
+	$(CC) -target arm64-apple-macos11 PrintUnixTime/main.c -o bin/UnixTime
+	$(CC) -target arm64-apple-macos11 RainbowType/main.c -lncurses -o bin/RainbowType
 
 clean:
-	rm -f bin/* rm -d bin/
+	rm -rf bin
