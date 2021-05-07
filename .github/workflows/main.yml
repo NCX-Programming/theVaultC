@@ -21,6 +21,10 @@ jobs:
       commit_message: ${{ steps.build-linux.outputs.commit_message }}
     steps:
     - uses: actions/checkout@v2
+    - name: Get Dependencies
+      run: |
+        sudo apt update && \
+        sudo apt install -y libncurses-dev
     - name: Build Linux
       run: |
         make linux
@@ -46,6 +50,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Get Dependencies
+      run: |
+        brew install ncurses
     - name: Build macOS
       run: make mac
     - name: Pack Build Files
@@ -64,6 +71,9 @@ jobs:
 
     #steps:
     #- uses: actions/checkout@v2
+    #- name: Get Dependencies
+      #run: |
+        #brew install ncurses
     #- name: Build macOS
       #run: make macARM
     #- name: Pack Build Files

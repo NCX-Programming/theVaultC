@@ -6,9 +6,11 @@ DEBUG =
 PROJECT1 = GraphicStuffC
 PROJECT2 = GuessMyNumberC
 PROJECT3 = PrintUnixTime
+PROJECT4 = RainbowType
 TARGET1 = graphicStuff
 TARGET2 = guessMyNumber
 TARGET3 = UnixTime
+TARGET4 = RainbowType
 
 all: linux win32 win64
 
@@ -17,6 +19,7 @@ linux:
 	$(CC) $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)
 	$(CC) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)
 	$(CC) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)
+	$(CC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)
 
 win32:
 	mkdir -p bin/
@@ -38,12 +41,14 @@ mac:
 	$(CC) -target x86_64-apple-macos10.12 $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)X86
 	$(CC) -target x86_64-apple-macos10.12 $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)X86
 	$(CC) -target x86_64-apple-macos10.12 $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)X86
+	$(CC) -target x86_64-apple-macos10.12 $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)X86
 
 macARM:
 	mkdir -p bin/
 	$(CC) -target arm64-apple-macos11 $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)ARM
 	$(CC) -target arm64-apple-macos11 $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)ARM
 	$(CC) -target arm64-apple-macos11 $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)ARM
+	$(CC) -target arm64-apple-macos11 $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)ARM
 
 clean:
 	rm -rf bin/
