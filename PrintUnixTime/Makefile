@@ -1,4 +1,5 @@
 CC = gcc
+CC10 = gcc-10
 TARGET = UnixTime
 
 all: linux win32 win64
@@ -18,11 +19,11 @@ win64:
 # Note that the mac executables can only be compiled on mac
 macX86:
 	mkdir -p bin/
-	$(CC) -o bin/$(TARGET)X86 -target x86_64-apple-macos10.12 main.c
+	$(CC10) main.c -o bin/$(TARGET)X86
 
 macARM:
 	mkdir -p bin/
-	$(CC) -o bin/$(TARGET)ARM -target arm64-apple-macos11 main.c
+	$(CC10) main.c -o bin/$(TARGET)ARM
 
 clean:
 	rm -f bin/* rm -d bin/
