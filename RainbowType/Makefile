@@ -8,7 +8,7 @@ linux:
 	mkdir -p bin/
 	$(CC) main.c $(LIBS) -o bin/$(TARGET)
 
-macX86:
+mac:
 	mkdir -p bin/
 	$(CC) -o bin/$(TARGET)X86 main.c $(LIBS) -target x86_64-apple-macos10.12
 

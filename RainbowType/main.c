@@ -57,7 +57,7 @@ int main(){
         i++;
       }
     }
-    else if(ch==KEY_BACKSPACE){
+    else if(ch==KEY_BACKSPACE|ch==127){
       getyx(stdscr,y,x);
       if(x==0){
         mvprintw(y-1,max_x+1,"");
