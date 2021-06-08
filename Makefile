@@ -1,6 +1,6 @@
 # Basic settings
 CC = gcc
-CC10 = gcc-10
+CCMAC = gcc-11
 CFLAGS = -Wall -O2
 DEBUG =
 # All targets/projects
@@ -39,17 +39,17 @@ win64:
 # and ARM builds can only be compiled on ARM Macs.
 mac:
 	mkdir -p bin/
-	$(CC10) $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)X86
-	$(CC10) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)X86
-	$(CC10) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)X86
-	$(CC10) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)X86
+	$(CCMAC) $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)X86
+	$(CCMAC) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)X86
+	$(CCMAC) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)X86
+	$(CCMAC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)X86
 
 macARM:
 	mkdir -p bin/
-	$(CC10) $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)ARM
-	$(CC10) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)ARM
-	$(CC10) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)ARM
-	$(CC10) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)ARM
+	$(CCMAC) $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)ARM
+	$(CCMAC) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)ARM
+	$(CCMAC) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)ARM
+	$(CCMAC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)ARM
 
 clean:
 	rm -rf bin/

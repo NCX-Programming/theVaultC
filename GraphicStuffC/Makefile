@@ -1,5 +1,5 @@
 CC = gcc
-CC10 = gcc-10
+CCMAC = gcc-11
 TARGET = graphicStuff
 
 all: linux win32 win64
@@ -19,11 +19,11 @@ win64:
 # Note that the mac executables can only be compiled on mac
 macX86:
 	mkdir -p bin/
-	$(CC10) main.c -o bin/$(TARGET)X86
+	$(CCMAC) main.c -o bin/$(TARGET)X86
 
 macARM:
 	mkdir -p bin/
-	$(CC10) main.c -o bin/$(TARGET)ARM
+	$(CCMAC) main.c -o bin/$(TARGET)ARM
 
 clean:
 	rm -f bin/* rm -d bin/

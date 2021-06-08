@@ -1,5 +1,5 @@
 CC = gcc
-CC10 = gcc-10
+CCMAC = gcc-11
 TARGET = RainbowType
 LIBS = -lncurses
 
@@ -11,10 +11,10 @@ linux:
 
 mac:
 	mkdir -p bin/
-	$(CC10) main.c $(LIBS) -o bin/$(TARGET)X86
+	$(CCMAC) main.c $(LIBS) -o bin/$(TARGET)X86
 macARM:
 	mkdir -p bin/
-	$(CC10) main.c $(LIBS) -o bin/$(TARGET)ARM
+	$(CCMAC) main.c $(LIBS) -o bin/$(TARGET)ARM
 
 clean:
 	rm -rf bin
