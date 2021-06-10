@@ -1,4 +1,5 @@
 CC = gcc
+CCMAC = gcc-11
 TARGET = RainbowType
 LIBS = -lncurses
 
@@ -8,13 +9,12 @@ linux:
 	mkdir -p bin/
 	$(CC) main.c $(LIBS) -o bin/$(TARGET)
 
-macX86:
+mac:
 	mkdir -p bin/
-	$(CC) -o bin/$(TARGET)X86 main.c $(LIBS) -target x86_64-apple-macos10.12
-
+	$(CCMAC) main.c $(LIBS) -o bin/$(TARGET)X86
 macARM:
 	mkdir -p bin/
-	$(CC) -o bin/$(TARGET)ARM main.c $(LIBS) -target arm64-apple-macos11
+	$(CCMAC) main.c $(LIBS) -o bin/$(TARGET)ARM
 
 clean:
 	rm -rf bin
