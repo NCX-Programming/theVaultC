@@ -17,13 +17,13 @@ win64:
 	x86_64-w64-mingw32-gcc -o bin/$(TARGET)64.exe main.c
 
 # Note that the mac executables can only be compiled on mac
-macX86:
+mac:
 	mkdir -p bin/
 	$(CCMAC) main.c -o bin/$(TARGET)X86
 
 macARM:
 	mkdir -p bin/
- 	$(CCMAC) main.c -o bin/$(TARGET)ARM
+	$(CCMAC) main.c -o bin/$(TARGET)ARM
 
 clean:
-	rm -f bin/* rm -d bin/
+	rm -rf bin/
