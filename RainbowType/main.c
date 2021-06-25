@@ -50,14 +50,14 @@ int main(){
       break;
     }
     else if(ch==KEY_F(2)){
-      int i;
+      int i=0;
       while(i<=max_y){
         move(i,0);
         clrtoeol();
         i++;
       }
     }
-    else if(ch==KEY_BACKSPACE|ch==127){
+    else if(ch==KEY_BACKSPACE||ch==127){
       getyx(stdscr,y,x);
       if(x==0){
         mvprintw(y-1,max_x+1,"");
@@ -125,7 +125,6 @@ int main(){
         break;
     }
   }
-
   refresh();
 	endwin();
 	return 0;
