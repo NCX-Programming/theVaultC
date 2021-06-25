@@ -14,24 +14,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <ncurses.h>
-
+// Function used to ignore arrow key presses and print any other key presses
 int checkch(int z){
-  if(z==KEY_UP){
-    return(0);
-  }
-  else if(z==KEY_DOWN){
-    return(0);
-  }
-  else if(z==KEY_LEFT){
-    return(0);
-  }
-  else if(z==KEY_RIGHT){
+  if(z==KEY_UP||z==KEY_DOWN||z==KEY_LEFT||z==KEY_RIGHT){
     return(0);
   }
   else{
     printw("%c",z);
     return(0);
   }
+}
+// Color-setting function to reduce the number of lines used later in the code
+int setcolor(int col,int w){
+  attron(COLOR_PAIR(col));
+  checkch(w);
+  attroff(COLOR_PAIR(col));
+  return(0);
 }
 int main(){
   int ch;
@@ -40,7 +38,7 @@ int main(){
   int y;
 
 	initscr();
-  // Color stuff
+  // Set color pairs
   start_color();
   init_pair(1, COLOR_RED, COLOR_BLACK);
   init_pair(2, COLOR_YELLOW, COLOR_BLACK);
@@ -48,23 +46,25 @@ int main(){
   init_pair(4, COLOR_CYAN, COLOR_BLACK);
   init_pair(5, COLOR_BLUE, COLOR_BLACK);
   init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
-  // End of color stuff
+  // Initialization stuff
 	raw();
 	keypad(stdscr, TRUE);
 	noecho();
-
+  // Get the size of the terminal window
   int max_y, max_x;
   getmaxyx(stdscr, max_y, max_x);
-
+  // End initialization, print welcome text, and begin watching for key presses
   printw("Type some characters and see them in rainbow. (F1 to exit, F2 to clear screen)\n");
   refresh();
-
+  // Key press detection loop
   while(1){
-    ch = getch();
+    ch=getch();
     color++;
+    // Detect F1, which breaks the loop and leads to de-initialization
     if(ch==KEY_F(1)){
       break;
     }
+    // Detect F2, which uses a loop to clear every line
     else if(ch==KEY_F(2)){
       int i=0;
       while(i<=max_y){
@@ -74,6 +74,7 @@ int main(){
       }
       move(0,0);
     }
+    // Backspace detection, 127 is the code for the delete key on Macs
     else if(ch==KEY_BACKSPACE||ch==127){
       getyx(stdscr,y,x);
       if(x==0){
@@ -88,56 +89,45 @@ int main(){
       }
       color=7;
     }
-    else if(ch==KEY_UP){
-      getyx(stdscr,y,x);
-      move(y-1,x);
+    // Arrow key presses, just moves the cursor in that direction
+    getyx(stdscr,y,x);
+    switch(ch){
+      case KEY_UP:
+        move(y-1,x);
+        break;
+      case KEY_DOWN:
+        move(y+1,x);
+        break;
+      case KEY_LEFT:
+        move(y,x-1);
+        break;
+      case KEY_RIGHT:
+        move(y,x+1);
+        break;
     }
-    else if(ch==KEY_DOWN){
-      getyx(stdscr,y,x);
-      move(y+1,x);
-    }
-    else if(ch==KEY_LEFT){
-      getyx(stdscr,y,x);
-      move(y,x-1);
-    }
-    else if(ch==KEY_RIGHT){
-      getyx(stdscr,y,x);
-      move(y,x+1);
-    }
+    // Color switch used to cycle through the colors pairs generated earlier
     switch(color){
       case 1:
-        attron(COLOR_PAIR(1));
-        checkch(ch);
-        attroff(COLOR_PAIR(1));
+        setcolor(1,ch);
         break;
       case 2:
-        attron(COLOR_PAIR(2));
-        checkch(ch);
-        attroff(COLOR_PAIR(2));
+        setcolor(2,ch);
         break;
       case 3:
-        attron(COLOR_PAIR(3));
-        checkch(ch);
-        attroff(COLOR_PAIR(3));
+        setcolor(3,ch);
         break;
       case 4:
-        attron(COLOR_PAIR(4));
-        checkch(ch);
-        attroff(COLOR_PAIR(4));
+        setcolor(4,ch);
         break;
       case 5:
-        attron(COLOR_PAIR(5));
-        checkch(ch);
-        attroff(COLOR_PAIR(5));
+        setcolor(5,ch);
         break;
       case 6:
-        attron(COLOR_PAIR(6));
-        checkch(ch);
-        attroff(COLOR_PAIR(6));
+        setcolor(6,ch);
         color=0;
         break;
       case 7:
-        // "Skip" function
+        // "Skip" function, only ever called from the backspace key
         color=0;
         break;
     }
