@@ -14,7 +14,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <ncurses.h>
-#include <stdbool.h>
 // Function used to ignore arrow key presses and print any other key presses
 int checkch(int z){
   if(!(z==KEY_UP||z==KEY_DOWN||z==KEY_LEFT||z==KEY_RIGHT||z==KEY_BACKSPACE||z==127)){
@@ -32,11 +31,9 @@ int setcolor(int col,int w){
 int main(){
   int ch;
   int color=0;
-  int x;
-  int y;
+  int y,x;
   int i=0;
-  bool charcheck=TRUE;
-
+  int charcheck=1;
 	initscr();
   // Set color pairs
   start_color();
@@ -51,13 +48,13 @@ int main(){
 	keypad(stdscr, TRUE);
 	noecho();
   // Get the size of the terminal window
-  int max_y, max_x;
+  int max_y,max_x;
   getmaxyx(stdscr, max_y, max_x);
   // End initialization, print welcome text, and begin watching for key presses
   printw("Type some characters and see them in rainbow. (F1 to exit, F2 to clear screen)\n");
   refresh();
   // Key press detection loop
-  while(charcheck==TRUE){
+  while(charcheck==1){
     ch=getch();
     color++;
     // Detect F1, which breaks the loop and leads to de-initialization
@@ -65,7 +62,7 @@ int main(){
     switch(ch){
       // F1 code, sets the while() variable to false, ending the loop and exiting
       case KEY_F(1):
-        charcheck=FALSE;
+        charcheck=0;
         break;
       // F2 code, clears the screen line by line
       case KEY_F(2):
@@ -130,5 +127,5 @@ int main(){
   }
   refresh();
 	endwin();
-	return 0;
+	return(0);
 }
