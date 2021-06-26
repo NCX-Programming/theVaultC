@@ -102,28 +102,9 @@ int main(){
         move(y,x+1);
         break;
     }
-    // Color switch used to cycle through the colors pairs generated earlier
-    switch(color){
-      case 1:
-        setcolor(1,ch);
-        break;
-      case 2:
-        setcolor(2,ch);
-        break;
-      case 3:
-        setcolor(3,ch);
-        break;
-      case 4:
-        setcolor(4,ch);
-        break;
-      case 5:
-        setcolor(5,ch);
-        break;
-      case 6:
-        setcolor(6,ch);
-        color=0;
-        break;
-    }
+    // Call setcolor() with the current color, and if it's 6 then reset it after
+    setcolor(color,ch);
+    if(color==6)color=0;
   }
   refresh();
 	endwin();
