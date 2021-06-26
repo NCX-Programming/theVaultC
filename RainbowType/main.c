@@ -16,13 +16,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <ncurses.h>
 // Function used to ignore arrow key presses and print any other key presses
 int checkch(int z){
-  if(z==KEY_UP||z==KEY_DOWN||z==KEY_LEFT||z==KEY_RIGHT||z==KEY_BACKSPACE||z==127){
-    return(0);
-  }
-  else{
+  if(!(z==KEY_UP||z==KEY_DOWN||z==KEY_LEFT||z==KEY_RIGHT||z==KEY_BACKSPACE||z==127)){
     printw("%c",z);
-    return(0);
   }
+  return(0);
 }
 // Color-setting function to reduce the number of lines used later in the code
 int setcolor(int col,int w){
