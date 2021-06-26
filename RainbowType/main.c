@@ -34,6 +34,7 @@ int main(){
   int color=0;
   int x;
   int y;
+  int i=0;
   bool charcheck=TRUE;
 
 	initscr();
@@ -68,7 +69,6 @@ int main(){
         break;
       // F2 code, clears the screen line by line
       case KEY_F(2):
-        int i=0;
         while(i<=max_y){
           move(i,0);
           clrtoeol();
