@@ -14,6 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <ncurses.h>
+#include <stdbool.h>
 // Function used to ignore arrow key presses and print any other key presses
 int checkch(int z){
   if(!(z==KEY_UP||z==KEY_DOWN||z==KEY_LEFT||z==KEY_RIGHT||z==KEY_BACKSPACE||z==127)){
@@ -33,6 +34,7 @@ int main(){
   int color=0;
   int x;
   int y;
+  bool charcheck=TRUE;
 
 	initscr();
   // Set color pairs
@@ -54,40 +56,42 @@ int main(){
   printw("Type some characters and see them in rainbow. (F1 to exit, F2 to clear screen)\n");
   refresh();
   // Key press detection loop
-  while(1){
+  while(charcheck==TRUE){
     ch=getch();
     color++;
     // Detect F1, which breaks the loop and leads to de-initialization
-    if(ch==KEY_F(1)){
-      break;
-    }
-    // Detect F2, which uses a loop to clear every line
-    else if(ch==KEY_F(2)){
-      int i=0;
-      while(i<=max_y){
-        move(i,0);
-        clrtoeol();
-        i++;
-      }
-      move(0,0);
-    }
-    // Backspace detection, 127 is the code for the delete key on Macs
-    else if(ch==KEY_BACKSPACE||ch==127){
-      getyx(stdscr,y,x);
-      if(x==0){
-        mvprintw(y-1,max_x+1,"");
-        mvprintw(y-1,max_x-1,"");
-        move(y-1,max_x-1);
-      }
-      else{
-        move(y,x-1);
-        printw(" ");
-        move(y,x-1);
-      }
-    }
-    // Arrow key presses, just moves the cursor in that direction
     getyx(stdscr,y,x);
     switch(ch){
+      // F1 code, sets the while() variable to false, ending the loop and exiting
+      case KEY_F(1):
+        charcheck=FALSE;
+        break;
+      // F2 code, clears the screen line by line
+      case KEY_F(2):
+        int i=0;
+        while(i<=max_y){
+          move(i,0);
+          clrtoeol();
+          i++;
+        }
+        move(0,0);
+        break;
+      // Backspace code, 127 is for the 'delete' key on Macs
+      case KEY_BACKSPACE:
+      case 127:
+        getyx(stdscr,y,x);
+        if(x==0){
+          mvprintw(y-1,max_x+1,"");
+          mvprintw(y-1,max_x-1,"");
+          move(y-1,max_x-1);
+        }
+        else{
+          move(y,x-1);
+          printw(" ");
+          move(y,x-1);
+        }
+        break;
+      // Arrow keys
       case KEY_UP:
         move(y-1,x);
         break;
