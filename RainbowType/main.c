@@ -30,10 +30,10 @@ int setcolor(int col,int w){
 }
 int main(){
   int ch;
-  int color=0;
+  int8_t color=0;
   int y,x;
   int i=0;
-  int charcheck=1;
+  int8_t charcheck=1;
 	initscr();
   // Set color pairs
   start_color();
@@ -72,6 +72,7 @@ int main(){
           i++;
         }
         move(0,0);
+        i=0;
         break;
       // Backspace code, 127 is for the 'delete' key on Macs
       case KEY_BACKSPACE:
