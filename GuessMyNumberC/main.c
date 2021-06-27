@@ -18,12 +18,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <time.h>
 #include <unistd.h>
 // Declare variables
-int menuChoice;
+int8_t menuChoice;
 int guess;
 int randomNumber;
 int maxNumber = 0;
-int maxGuesses = 0;
-int usedGuesses = 0;
+int8_t maxGuesses = 0;
+int8_t usedGuesses = 0;
 char guessString[30];
 // Declare functions
 void GuessAgain();
@@ -55,13 +55,13 @@ void CheckAnswer() {
             if(menuChoice==78||menuChoice==110) exit(0); }
     }
     // Answer too large
-    if(guess>randomNumber){
+    else if(guess>randomNumber){
         clrScrn();
         printf("Too large! Try a smaller number.\n");
         GuessAgain();
     }
     // Answer too small
-    if(guess<randomNumber){
+    else if(guess<randomNumber){
         clrScrn();
         printf("Too small! Try a larger number.\n");
         GuessAgain();
@@ -80,7 +80,9 @@ void GuessAgain() {
             menuChoice=fgetc(stdin);
             if(menuChoice==89||menuChoice==121) PlayGame();
             if(menuChoice==78||menuChoice==110) exit(0); }
-    }else{
+    }
+    else
+    {
         // Repeating guess code
         sleep(1);
         clrScrn();
@@ -124,22 +126,24 @@ void GameSettings() {
         // Get settings menu choice
         if(menuChoice==49){
             // Set max number
-            while(maxNumber<=1){
+            while(maxNumber<=1||maxNumber>=255){
                 clrScrn();
                 printf("Enter the max number, must be positive, larger than 1, and an integer:\n");
                 // Read input and convert to integer
                 scanf("%s",maxNumStr);
-                maxNumber=atoi(maxNumStr); }
-                // Output new max number and return to settings
-                clrScrn();
-                printf("Max number set to %d\n",maxNumber);
-                sleep(1);
-                GameSettings();
-        }if(menuChoice==50) {
+                maxNumber=atoi(maxNumStr);
+            }
+            // Output new max number and return to settings
+            clrScrn();
+            printf("Max number set to %d\n",maxNumber);
+            sleep(1);
+            GameSettings();
+        }
+        if(menuChoice==50) {
             // Set max guesses
             while(maxGuesses<=0){
                 clrScrn();
-                printf("Enter the max number of guesses, must be positive, at least 1, and an integer:\n");
+                printf("Enter the max number of guesses, must be positive, at least 1, no larger than 255 and an integer:\n");
                 // Read input and convert to integer
                 scanf("%s",maxGuessStr);
                 maxGuesses=atoi(maxGuessStr); }
@@ -148,7 +152,9 @@ void GameSettings() {
                 printf("Max guesses set to %d\n",maxGuesses);
                 sleep(1);
                 GameSettings();
-        }if(menuChoice==51) PlayGame(); }
+        }
+        if(menuChoice==51) PlayGame();
+    }
 }
 int main(void) {
     clrScrn();
@@ -161,7 +167,7 @@ int main(void) {
     printf("Main Menu\n");
     printf("Select an option by pressing the number on your keyboard.\n");
     printf("1. Play     2. Game Settings     3. Exit\n");
-    menuChoice =fgetc(stdin);
+    menuChoice=fgetc(stdin);
     if(menuChoice==49) PlayGame();
     if(menuChoice==50) GameSettings();
     if(menuChoice==51) exit(0);
