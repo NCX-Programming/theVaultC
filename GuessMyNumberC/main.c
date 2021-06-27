@@ -73,7 +73,8 @@ void GuessAgain() {
         // Game over; no more guesses
         clrScrn();
         printf("Game Over!\n");
-        printf("You were unable to guess the number in %d guesses\n", maxGuesses);
+        printf("You were unable to guess the number in %d guesses\n",maxGuesses);
+        printf("The correct answer was: %d!\n",randomNumber);
         printf("Play again? y/n ");
         while(menuChoice!=0){
             menuChoice=0;
