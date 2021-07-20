@@ -14,17 +14,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <ncurses.h>
-// Function used to ignore arrow key presses and print any other key presses
-int checkch(int z){
-  if(!(z==KEY_UP||z==KEY_DOWN||z==KEY_LEFT||z==KEY_RIGHT||z==KEY_BACKSPACE||z==127)){
-    printw("%c",z);
-  }
-  return(0);
-}
 // Color-setting function to reduce the number of lines used later in the code
+// Now prints the character after the check
 int setcolor(int col,int w){
   attron(COLOR_PAIR(col));
-  checkch(w);
+  if(!(w==KEY_UP||w==KEY_DOWN||w==KEY_LEFT||w==KEY_RIGHT||w==KEY_BACKSPACE||w==127)){
+    printw("%c",w);
+  }
   attroff(COLOR_PAIR(col));
   return(0);
 }
