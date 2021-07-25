@@ -26,8 +26,6 @@ int8_t maxGuesses = 0;
 int8_t usedGuesses = 0;
 char guessString[30];
 // Declare functions
-void GuessAgain();
-void CheckAnswer();
 void PlayGame();
 // Code start
 void clrScrn() {
@@ -42,58 +40,6 @@ void clrScrn() {
         system( "clear" );
     #endif
 }
-void CheckAnswer() {
-    // Correct answer
-    if(guess==randomNumber){
-        clrScrn();
-        printf("Congratulations! You guessed the right number in %d guesses!\n", usedGuesses);
-        printf("Play again? y/n ");
-        while (menuChoice!=0){
-            menuChoice=0;
-            menuChoice=fgetc(stdin);
-            if(menuChoice==89||menuChoice==121) PlayGame();
-            if(menuChoice==78||menuChoice==110) exit(0); }
-    }
-    // Answer too large
-    else if(guess>randomNumber){
-        clrScrn();
-        printf("Too large! Try a smaller number.\n");
-        GuessAgain();
-    }
-    // Answer too small
-    else if(guess<randomNumber){
-        clrScrn();
-        printf("Too small! Try a larger number.\n");
-        GuessAgain();
-    }
-}
-void GuessAgain() {
-    // Check if there are any guesses remaining
-    if(usedGuesses==maxGuesses){
-        // Game over; no more guesses
-        clrScrn();
-        printf("Game Over!\n");
-        printf("You were unable to guess the number in %d guesses\n",maxGuesses);
-        printf("The correct answer was: %d!\n",randomNumber);
-        printf("Play again? y/n ");
-        while(menuChoice!=0){
-            menuChoice=0;
-            menuChoice=fgetc(stdin);
-            if(menuChoice==89||menuChoice==121) PlayGame();
-            if(menuChoice==78||menuChoice==110) exit(0); }
-    }
-    else
-    {
-        // Repeating guess code
-        sleep(1);
-        clrScrn();
-        printf("Enter your guess: ");
-        scanf("%s", guessString);
-        guess = atoi(guessString);
-        usedGuesses++;
-        CheckAnswer();
-    }
-}
 void PlayGame() {
     // Fix unset variables
     if(maxGuesses==0) maxGuesses=10;
@@ -105,12 +51,47 @@ void PlayGame() {
     clrScrn();
     usedGuesses = 0;
     printf("I'm thinking of a number between 1 and %d\n", maxNumber);
-    printf("Enter your guess: ");
-    // Read input and convert to integer
-    scanf("%s", guessString);
-    guess = atoi(guessString);
-    usedGuesses++;
-    CheckAnswer();
+    for(usedGuesses=0;usedGuesses<maxGuesses;usedGuesses++){
+        printf("Enter your guess: ");
+        // Read input and convert to integer
+        scanf("%s", guessString);
+        guess = atoi(guessString);
+        if(guess==randomNumber){
+            clrScrn();
+            printf("Congratulations! You guessed the right number in %d guesses!\n", usedGuesses);
+            printf("Play again? y/n ");
+            while (menuChoice!=0){
+                menuChoice=0;
+                menuChoice=fgetc(stdin);
+                if(menuChoice==89||menuChoice==121) PlayGame();
+                if(menuChoice==78||menuChoice==110) exit(0); }
+        }
+        // Answer too large
+        else if(guess>randomNumber){
+            clrScrn();
+            printf("Too large! Try a smaller number.\n");
+            usleep(500000);
+            clrScrn();
+        }
+        // Answer too small
+        else if(guess<randomNumber){
+            clrScrn();
+            printf("Too small! Try a larger number.\n");
+            usleep(500000);
+            clrScrn();
+        }
+    }
+    // Game over; no more guesses
+    clrScrn();
+    printf("Game Over!\n");
+    printf("You were unable to guess the number in %d guesses\n",maxGuesses);
+    printf("The correct answer was: %d!\n",randomNumber);
+    printf("Play again? y/n ");
+    while(menuChoice!=0){
+        menuChoice=0;
+        menuChoice=fgetc(stdin);
+        if(menuChoice==89||menuChoice==121) PlayGame();
+        if(menuChoice==78||menuChoice==110) exit(0); }
 }
 void GameSettings() {
     // Declare temp string variables
