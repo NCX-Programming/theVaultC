@@ -15,12 +15,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
 #include <time.h>
 #include <unistd.h>
 // Declare variables
-int8_t g_menuChoice;
+int g_menuChoice;
 // Code start
 void clrScrn() {
   // Screen clear fucntion, checks OS first for compatibility:tm:
@@ -35,10 +33,9 @@ void clrScrn() {
   #endif
 }
 void PlayGame(int maxNumber,int maxGuesses){
-  uint8_t guess;
-  uint8_t randomNumber;
-  int8_t usedGuesses=0;
-  char guessString[30];
+  int guess;
+  int randomNumber;
+  int usedGuesses=0;
   // Get the random number, seed is taken from the time
   srand(time(0));
   randomNumber = rand() % maxNumber;
@@ -48,9 +45,8 @@ void PlayGame(int maxNumber,int maxGuesses){
   printf("I'm thinking of a number between 1 and %d\n", maxNumber);
   for(usedGuesses=0;usedGuesses<maxGuesses;usedGuesses++){
     printf("Enter your guess: ");
-    // Read input and convert to integer
-    scanf("%s", guessString);
-    guess = atoi(guessString);
+    // Read input
+    scanf("%d",&guess);
     if(guess==randomNumber){
       clrScrn();
       printf("Congratulations! You guessed the right number in %d guesses!\n", usedGuesses);
@@ -58,8 +54,8 @@ void PlayGame(int maxNumber,int maxGuesses){
       while (g_menuChoice!=0){
         g_menuChoice=0;
         g_menuChoice=fgetc(stdin);
-        if(g_menuChoice==89||g_menuChoice==121) PlayGame(maxNumber,maxGuesses);
-        if(g_menuChoice==78||g_menuChoice==110) exit(0); }
+        if(g_menuChoice==89||g_menuChoice==121)PlayGame(maxNumber,maxGuesses);
+        if(g_menuChoice==78||g_menuChoice==110)exit(0); }
     }
     // Answer too large
     else if(guess>randomNumber){
@@ -85,17 +81,14 @@ void PlayGame(int maxNumber,int maxGuesses){
   while(g_menuChoice!=0){
     g_menuChoice=0;
     g_menuChoice=fgetc(stdin);
-    if(g_menuChoice==89||g_menuChoice==121) PlayGame(maxNumber,maxGuesses);
-    if(g_menuChoice==78||g_menuChoice==110) exit(0); }
+    if(g_menuChoice==89||g_menuChoice==121)PlayGame(maxNumber,maxGuesses);
+    if(g_menuChoice==78||g_menuChoice==110)exit(0); }
 }
 int main(void) {
-  int8_t settingsLoop=0;
-  // Temporary chars used to store inputs before they are converted to an integer
-  char *maxNumStr=malloc(16);
-  char *maxGuessStr=malloc(16);
+  int settingsLoop=0;
   // Integers that are passed when the game starts but need to be adjusted here first
-  uint8_t maxNumber = 100;
-  uint8_t maxGuesses = 10;
+  int maxNumber = 100;
+  int maxGuesses = 10;
   clrScrn();
   // Draw welcome screen/main menu
   printf("Welcome to Guess My Number! (theVault C Edition)\n");
@@ -112,15 +105,12 @@ int main(void) {
       g_menuChoice=fgetc(stdin);
       // Get settings menu choice
       if(g_menuChoice==49){
-        // Clear input string
-        memset(maxNumStr,0,16);
         // Set max number
         clrScrn();
         printf("Enter the max number, must be positive, larger than 1, and smaller than 255:\n");
-        // Read input and convert to integer, reset to 100 if invalid
+        // Read input and reset to 100 if invalid
         // If the number is 255 it likely underflowed and therefor needs to be fixed
-        scanf("%s",maxNumStr);
-        maxNumber=atoi(maxNumStr);
+        scanf("%d",&maxNumber);
         if(maxNumber<1||maxNumber==255)maxNumber=100;
         // Output new max number and return to settings
         clrScrn();
@@ -128,26 +118,19 @@ int main(void) {
         sleep(1);
       }
       else if(g_menuChoice==50) {
-        // Clear input string
-        memset(maxGuessStr,0,16);
         // Set max guesses
         clrScrn();
         printf("Enter the max number of guesses, must be positive, at least 1, and smaller than 255:\n");
-        // Read input and convert to integer, reset to 100 if invalid
-        scanf("%s",maxGuessStr);
-        maxGuesses=atoi(maxGuessStr);
+        // Read input and reset to 100 if invalid
+        scanf("%d",&maxGuesses);
         if(maxGuesses<1||maxGuesses==255)maxGuesses=10;
         // Output new max number and return to settings
         clrScrn();
         printf("Max guesses set to %d\n",maxGuesses);
         sleep(1);
       }
-      else if(g_menuChoice==51){
-        free(maxNumStr);
-        free(maxGuessStr);
-        PlayGame(maxNumber,maxGuesses);
-      }
+      else if(g_menuChoice==51)PlayGame(maxNumber,maxGuesses);
     }
   }
-  else if(g_menuChoice==50) exit(0);
+  else if(g_menuChoice==50)exit(0);
 }
