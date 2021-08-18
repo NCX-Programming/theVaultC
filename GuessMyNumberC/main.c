@@ -23,13 +23,13 @@ int g_menuChoice;
 void clrScrn() {
   // Screen clear fucntion, checks OS first for compatibility:tm:
   #ifdef _WIN32
-      system("cls");
+    system("cls");
   #endif
   #ifdef unix
-      system("clear");
+    system("clear");
   #endif
   #ifdef __APPLE__
-      system( "clear" );
+    system( "clear" );
   #endif
 }
 void PlayGame(int maxNumber,int maxGuesses){
@@ -42,7 +42,7 @@ void PlayGame(int maxNumber,int maxGuesses){
   // Start the game
   clrScrn();
   usedGuesses = 0;
-  printf("I'm thinking of a number between 1 and %d\n", maxNumber);
+  printf("I'm thinking of a number between 1 and %d!\n", maxNumber);
   for(usedGuesses=0;usedGuesses<maxGuesses;usedGuesses++){
     printf("Enter your guess: ");
     // Read input
@@ -51,7 +51,7 @@ void PlayGame(int maxNumber,int maxGuesses){
       clrScrn();
       printf("Congratulations! You guessed the right number in %d guesses!\n", usedGuesses);
       printf("Play again? y/n ");
-      while (g_menuChoice!=0){
+      while(g_menuChoice!=0){
         g_menuChoice=0;
         g_menuChoice=fgetc(stdin);
         if(g_menuChoice==89||g_menuChoice==121)PlayGame(maxNumber,maxGuesses);
