@@ -16,5 +16,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 // Code start
 int main(void){
-  printf("Hello World!\n");
+  printf("RNGTool by NCX Programming.\nUnder construction.\n");
+  printf("You should have received a copy of the GNU General Public License along with this program.\nIf not, see <https://www.gnu.org/licenses/>.\n");
 }
