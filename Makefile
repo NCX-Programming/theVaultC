@@ -8,10 +8,12 @@ PROJECT1 = GraphicStuffC
 PROJECT2 = GuessMyNumberC
 PROJECT3 = PrintUnixTime
 PROJECT4 = RainbowType
+PROJECT5 = RNGTool
 TARGET1 = graphicStuff
 TARGET2 = guessMyNumber
 TARGET3 = UnixTime
 TARGET4 = RainbowType
+TARGET5 = RNGTool
 
 all: linux win32 win64
 
@@ -21,6 +23,7 @@ linux:
 	$(CC) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)
 	$(CC) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)
 	$(CC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)
+	$(CC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET5)
 
 win32:
 	mkdir -p bin/
@@ -43,6 +46,7 @@ mac:
 	$(CCMAC) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)X86
 	$(CCMAC) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)X86
 	$(CCMAC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)X86
+	$(CCMAC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET5)
 
 macARM:
 	mkdir -p bin/
@@ -50,6 +54,7 @@ macARM:
 	$(CCMAC) $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)ARM
 	$(CCMAC) $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)ARM
 	$(CCMAC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(TARGET4)ARM
+	$(CCMAC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET5)
 
 clean:
 	rm -rf bin/
