@@ -47,7 +47,7 @@ int main(){
   int max_y,max_x;
   getmaxyx(stdscr, max_y, max_x);
   // End initialization, print welcome text, and begin watching for key presses
-  printw("Type some characters and see them in rainbow. (F1 to exit, F2 to clear screen)\n");
+  printw("Type some characters and see them in rainbow.  [v1.0.0]\n(F1 to exit, F2 to clear screen)\n");
   refresh();
   // Key press detection loop
   while(charcheck==1){

@@ -166,7 +166,7 @@ int main(void){
     printf("\e[0;97m===============================\n");
     printf("|       'Graphics' Test       |\n");
     printf("|          theVaultC          |\n");
-    printf("|                             |\n");
+    printf("|           v1.0.0            |\n");
     printf("|   ");
     // White highlighted section
     printf("\e[0;30m\e[107mPress ENTER to continue\e[0m");

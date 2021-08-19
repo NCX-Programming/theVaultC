@@ -67,7 +67,7 @@ int main(void){
         usleep(750000);
         break;
       case 50:
-        printf("\nEnter the new maximum number: (must be smaller than maximum number)\n");
+        printf("\nEnter the new minimum number: (must be smaller than maximum number)\n");
         // Input number, reset to 100 if less than 1
         scanf("%d",&minNumber);
         if(minNumber>=maxNumber)minNumber=0;
