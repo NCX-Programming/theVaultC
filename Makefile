@@ -30,12 +30,14 @@ win32:
 	i686-w64-mingw32-gcc $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)32.exe
 	i686-w64-mingw32-gcc $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)32.exe
 	i686-w64-mingw32-gcc $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)32.exe
+	i686-w64-mingw32-gcc $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET5)32.exe
 
 win64:
 	mkdir -p bin/
 	x86_64-w64-mingw32-gcc $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET1)64.exe
 	x86_64-w64-mingw32-gcc $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET2)64.exe
 	x86_64-w64-mingw32-gcc $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET3)64.exe
+	x86_64-w64-mingw32-gcc $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(TARGET5)64.exe
 
 # Note that the macOS executables can only be compiled on macOS.
 # Also note that Intel builds can only be compiled on Intel Macs,

@@ -11,11 +11,11 @@ linux:
 
 win32:
 	mkdir -p bin/
-	i686-w64-mingw32-gcc -o bin/$(TARGET)32.exe $(PROJECT)/main.c
+	i686-w64-mingw32-gcc main.c -o bin/$(TARGET)32.exe
 
 win64:
 	mkdir -p bin/
-	x86_64-w64-mingw32-gcc -o bin/$(TARGET)64.exe $(PROJECT)/main.c
+	x86_64-w64-mingw32-gcc main.c -o bin/$(TARGET)64.exe
 
 # Note that the mac executables can only be compiled on mac
 mac:
