@@ -22,16 +22,14 @@ int clrScrn(){
   // Screen clear fucntion, checks OS first for compatibility:tm:
   #ifdef _WIN32
     system("cls");
-    return(0);
   #endif
   #ifdef unix
     system("clear");
-    return(0);
   #endif
   #ifdef __APPLE__
     system( "clear" );
-    return(0);
   #endif
+  return(0);
 }
 int main(void){
   // Control variables
@@ -43,7 +41,7 @@ int main(void){
   int maxNumber=100;
   int minNumber=0;
   clrScrn();
-  printf("Welcome to RNGTool v0.2.0\n");
+  printf("Welcome to RNGTool v0.3.0\n");
   usleep(1000000);
   while(execLoop==1){
     menuChoice=0;
