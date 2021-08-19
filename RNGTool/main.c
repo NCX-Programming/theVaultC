@@ -63,7 +63,6 @@ int main(void){
         if(maxNumber<1)maxNumber=100;
         clrScrn();
         printf("New maximum number set: %d\n",maxNumber);
-        fflush(stdout);
         usleep(750000);
         break;
       case 50:
@@ -73,7 +72,6 @@ int main(void){
         if(minNumber>=maxNumber)minNumber=0;
         clrScrn();
         printf("New minimum number set: %d\n",minNumber);
-        fflush(stdout);
         usleep(1000000);
         break;
       case 51:
@@ -82,15 +80,19 @@ int main(void){
         // Input seed, print a different message if 0 is selected
         scanf("%d",&usrSeed);
         clrScrn();
-        if(usrSeed==0)printf("The seed will be generated using time(0)\n");
-        else printf("New seed set to: %d\n",usrSeed);
-        fflush(stdout);
+        if(usrSeed==0){
+          printf("The seed will be generated using time(0)\n");
+          srand(time(0));
+        }
+        else{
+          printf("New seed set to: %d\n",usrSeed);
+          srand(usrSeed);
+        }
         usleep(750000);
         break;
       case 52:
         // Get the random number, using the max/min numbers and the seed provided by the user
-        if(usrSeed==0)srand(time(0));
-        else srand(usrSeed);
+
         randomNumber=minNumber+rand()%(maxNumber+1-minNumber);
         break;
       case 53:
