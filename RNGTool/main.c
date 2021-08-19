@@ -90,11 +90,10 @@ int main(void){
         usleep(750000);
         break;
       case 52:
-        clrScrn();
-        printf("Placeholder for number generation.");
-        fflush(stdout);
-        usleep(1500000);
-        clrScrn();
+        // Get the random number, using the max/min numbers and the seed provided by the user
+        if(usrSeed==0)srand(time(0));
+        else srand(usrSeed);
+        randomNumber=minNumber+rand()%(maxNumber+1-minNumber);
         break;
       case 53:
         execLoop=0;
