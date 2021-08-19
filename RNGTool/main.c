@@ -43,7 +43,7 @@ int main(void){
   int maxNumber=100;
   int minNumber=0;
   clrScrn();
-  printf("Welcome to RNGTool v0.1.0\n");
+  printf("Welcome to RNGTool v0.2.0\n");
   usleep(1000000);
   while(execLoop==1){
     menuChoice=0;
@@ -59,12 +59,42 @@ int main(void){
     menuChoice=fgetc(stdin);
     switch(menuChoice){
       case 49:
+        printf("\nEnter the new maximum number: (must be positive)\n");
+        // Input number, reset to 100 if less than 1
+        scanf("%d",&maxNumber);
+        if(maxNumber<1)maxNumber=100;
+        clrScrn();
+        printf("New maximum number set: %d\n",maxNumber);
+        fflush(stdout);
+        usleep(750000);
         break;
       case 50:
+        printf("\nEnter the new maximum number: (must be smaller than maximum number)\n");
+        // Input number, reset to 100 if less than 1
+        scanf("%d",&minNumber);
+        if(minNumber>=maxNumber)minNumber=0;
+        clrScrn();
+        printf("New minimum number set: %d\n",minNumber);
+        fflush(stdout);
+        usleep(1000000);
         break;
       case 51:
+        printf("\nEnter the seed you'd like to use to when generating a random number:\n");
+        printf("Enter \"0\" to use time(0), which gets the seed from the seconds since Unix Time started\n");
+        // Input seed, print a different message if 0 is selected
+        scanf("%d",&usrSeed);
+        clrScrn();
+        if(usrSeed==0)printf("The seed will be generated using time(0)\n");
+        else printf("New seed set to: %d\n",usrSeed);
+        fflush(stdout);
+        usleep(750000);
         break;
       case 52:
+        clrScrn();
+        printf("Placeholder for number generation.");
+        fflush(stdout);
+        usleep(1500000);
+        clrScrn();
         break;
       case 53:
         execLoop=0;
