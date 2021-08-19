@@ -21,6 +21,7 @@ linux:
 	$(CC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(PROJECT4)
 	$(CC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)
 	$(CC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
+	cp WordGenerator/words.txt bin/words.txt
 
 win32:
 	mkdir -p bin/
@@ -29,6 +30,7 @@ win32:
 	i686-w64-mingw32-gcc $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT3)32.exe
 	i686-w64-mingw32-gcc $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)32.exe
 	i686-w64-mingw32-gcc $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)32.exe
+	cp WordGenerator/words.txt bin/words.txt
 
 win64:
 	mkdir -p bin/
@@ -37,6 +39,7 @@ win64:
 	x86_64-w64-mingw32-gcc $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT3)64.exe
 	x86_64-w64-mingw32-gcc $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)64.exe
 	x86_64-w64-mingw32-gcc $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)64.exe
+	cp WordGenerator/words.txt bin/words.txt
 
 # Note that the macOS executables can only be compiled on macOS.
 # Also note that Intel builds can only be compiled on Intel Macs,
@@ -49,6 +52,7 @@ mac:
 	$(CCMAC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(PROJECT4)X86
 	$(CCMAC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)
 	$(CCMAC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
+	cp WordGenerator/words.txt bin/words.txt
 
 macARM:
 	mkdir -p bin/
@@ -58,6 +62,7 @@ macARM:
 	$(CCMAC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(PROJECT4)ARM
 	$(CCMAC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)
 	$(CCMAC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
+	cp WordGenerator/words.txt bin/words.txt
 
 clean:
 	rm -rf bin/
