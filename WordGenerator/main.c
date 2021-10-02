@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 // Code start
 int countWords(char *buffer,int size){
@@ -61,19 +62,32 @@ int main(int argc,char *argv[]){
     else nextCharBeginsWord=0;
   }
   if(argc==2){
-    // If an argument was supplied, use that as the number of words to generate
-    numPrintWords=atoi(argv[1]);
-    if(numPrintWords==0){
-      printf("You can only input an integer!\n");
-      return(1);
+    // If an argument was supplied, check if it's help, and if it isn't then
+    // use it as the number of words to generate
+    if(strcmp(argv[1],"--help")==0||strcmp(argv[1],"-h")==0){
+      printf("\nWordGenerator Usage\n\n");
+      printf("./WordGenerator [--help / -h] [--version / -v] [int]\n\n");
+      printf("Specify an integer to generate that many words.\n");
+      printf("If no integer is supplied, a random number of words will be generated.\n\n");
     }
-    printf("Out of %d total words, your %d words are:\n",numWords,numPrintWords);
-    for(ii=0;ii<numPrintWords;ii++){
-      printf("%s ",wordArray[rand()%nCountedWords]);
+    else if(strcmp(argv[1],"--version")==0||strcmp(argv[1],"-v")==0){
+      printf("\nWordGenerator by NCX Programming\n");
+      printf("Version 1.0.0\n\n");
     }
-    printf("\n");
+    else {
+      numPrintWords=atoi(argv[1]);
+      if(numPrintWords==0){
+        printf("Invalid argument, try --help\n");
+        return(1);
+      }
+      printf("Out of %d total words, your %d words are:\n",numWords,numPrintWords);
+      for(ii=0;ii<numPrintWords;ii++){
+        printf("%s ",wordArray[rand()%nCountedWords]);
+      }
+      printf("\n");
+    }
   }
-  else {
+  else if(argc==1){
     // If no argument was supplied, generate a random number of words to generate
     numPrintWords=1+rand()%(7-1);
     printf("Out of %d total words, your %d words are:\n",numWords,numPrintWords);
@@ -81,6 +95,9 @@ int main(int argc,char *argv[]){
       printf("%s ",wordArray[rand()%nCountedWords]);
     }
     printf("\n");
+  }
+  else {
+    printf("Invalid arguments, try --help\n");
   }
   return(0);
 }
