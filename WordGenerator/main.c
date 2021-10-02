@@ -66,7 +66,8 @@ int main(int argc,char *argv[]){
     // use it as the number of words to generate
     if(strcmp(argv[1],"--help")==0||strcmp(argv[1],"-h")==0){
       printf("\nWordGenerator Usage\n\n");
-      printf("./WordGenerator [--help / -h] [--version / -v] [int]\n\n");
+      printf("./WordGenerator [--help] [--version] [int]\n");
+      printf("                [-h]     [-v]\n\n");
       printf("Specify an integer to generate that many words.\n");
       printf("If no integer is supplied, a random number of words will be generated.\n\n");
     }
