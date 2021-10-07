@@ -29,6 +29,8 @@ int countWords(char *buffer,int size){
   return numWords;
 }
 int main(int argc,char *argv[]){
+  // Make sure the file exists
+  // If it doesn't, don't even initialize variables before exiting
   if(access("words.txt",F_OK)==0){
     // Seed rand()
     srand(time(0));
@@ -43,6 +45,11 @@ int main(int argc,char *argv[]){
     fseek(fp,0,SEEK_SET);
     fread(buffer,size,1,fp);
     fclose(fp);
+    // Make sure the final character before the null byte is a newline
+    if(buffer[size-1]!=10){
+      printf("\e[0;91mError:\e[0m File \"words.txt\" is improperly formatted! Expected \"\\n\" at position %d but got \"%c\"!\n",size-1,buffer[size-1]);
+      return(-2);
+    }
     // Initialize all variables
     int numWords=countWords(buffer,size);
     char **wordArray=malloc(numWords*sizeof(char *));
