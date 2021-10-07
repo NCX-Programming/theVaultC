@@ -12,7 +12,7 @@ PROJECT4 = RainbowType
 PROJECT5 = RNGTool
 PROJECT6 = WordGenerator
 
-all: linux win32 win64
+all: linux win64
 
 linux:
 	mkdir -p bin/
@@ -22,15 +22,6 @@ linux:
 	$(CC) $(PROJECT4)/main.c $(CFLAGS) $(DEBUG) -lncurses -o bin/$(PROJECT4)
 	$(CC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)
 	$(CC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
-	cp WordGenerator/words.txt bin/words.txt
-
-win32:
-	mkdir -p bin/
-	i686-w64-mingw32-gcc $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT1)32.exe
-	i686-w64-mingw32-gcc $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT2)32.exe
-	i686-w64-mingw32-gcc $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT3)32.exe
-	i686-w64-mingw32-gcc $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)32.exe
-	i686-w64-mingw32-gcc $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)32.exe
 	cp WordGenerator/words.txt bin/words.txt
 
 win64:
