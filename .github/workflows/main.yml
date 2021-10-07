@@ -72,7 +72,8 @@ jobs:
       run: |
         mkdir ~/theVaultC-windows
         mv bin/* ~/theVaultC-windows
-        tar -cvf ~/theVaultC-windows.tar ~/theVaultC-windows
+        cd ~
+        tar -cvf theVaultC-windows.tar theVaultC-windows/
         mkdir ~/theVaultC-windows-Checksums
         shasum -a 256 ~/theVaultC-windows.tar | sed 's/ .*//g' > ~/theVaultC-windows-Checksums/theVaultC-windows.tar.sha256
         openssl md5 ~/theVaultC-windows.tar | sed 's/.* //' > ~/theVaultC-windows-Checksums/theVaultC-windows.tar.md5
