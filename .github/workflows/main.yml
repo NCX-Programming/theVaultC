@@ -40,7 +40,8 @@ jobs:
       run: |
         mkdir ~/theVaultC-linux
         mv bin/* ~/theVaultC-linux
-        tar -cvf ~/theVaultC-linux.tar ~/theVaultC-linux
+        cd ~
+        tar -cvf theVaultC-linux.tar theVaultC-linux/
         mkdir ~/theVaultC-linux-Checksums
         shasum -a 256 ~/theVaultC-linux.tar | sed 's/ .*//g' > ~/theVaultC-linux-Checksums/theVaultC-linux.tar.sha256
         openssl md5 ~/theVaultC-linux.tar | sed 's/.* //' > ~/theVaultC-linux-Checksums/theVaultC-linux.tar.md5
@@ -100,7 +101,8 @@ jobs:
       run: |
         mkdir ~/theVaultC-macOS
         mv bin/* ~/theVaultC-macOS
-        tar -cvf ~/theVaultC-macOS.tar ~/theVaultC-macOS
+        cd ~
+        tar -cvf theVaultC-macOS.tar theVaultC-macOS/
         mkdir ~/theVaultC-macOS-Checksums
         shasum -a 256 ~/theVaultC-macOS.tar | sed 's/ .*//g' > ~/theVaultC-macOS-Checksums/theVaultC-macOS.tar.sha256
         openssl md5 ~/theVaultC-macOS.tar | sed 's/.* //' > ~/theVaultC-macOS-Checksums/theVaultC-macOS.tar.md5
