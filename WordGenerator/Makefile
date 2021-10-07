@@ -32,4 +32,4 @@ macARM:
 	cp words.txt bin/words.txt
 
 clean:
-	rm -f bin/* rm -d bin/
+	rm -rf bin/
