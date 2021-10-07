@@ -1,7 +1,7 @@
 CC = gcc
 CCMAC = gcc-11
 CFLAGS = -Wall -O2
-TARGET = guessMyNumber
+TARGET = GuessMyNumberC
 
 all: linux win32 win64
 

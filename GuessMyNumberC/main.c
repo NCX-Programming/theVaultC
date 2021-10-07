@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <string.h>
 // Declare variables
 int g_menuChoice;
 // Code start
@@ -83,15 +84,64 @@ void PlayGame(int maxNumber,int maxGuesses){
     g_menuChoice=fgetc(stdin);
     if(g_menuChoice==89||g_menuChoice==121)PlayGame(maxNumber,maxGuesses);
     if(g_menuChoice==78||g_menuChoice==110)exit(0); }
+  exit(0);
 }
-int main(void) {
+int main(int argc,char *argv[]){
   int settingsLoop=0;
   // Integers that are passed when the game starts but need to be adjusted here first
   int maxNumber = 100;
   int maxGuesses = 10;
+  int skipMenu=0;
+  int i;
+  if(argc>1){
+    for(i=1;i<argc;i++){
+      if(strcmp(argv[i],"--help")==0||strcmp(argv[i],"-h")==0){
+        printf("\nGuessMyNumberC Usage\n\n");
+        printf("./GuessMyNumberC [--help] [--play] [--max] <int> [--guesses] <int>\n");
+        printf("                 [-h]     [-p]\n\n");
+        printf("--play, Make game start as soon as command is entered, bypassing the menu\n\n");
+        printf("--max, Specify a maximum number from the terminal\n\n");
+        printf("--guesses, Specify the number of guesses allowed from the terminal\n\n");
+        return(0);
+      }
+      else if(strcmp(argv[i],"--max")==0){
+        printf("%s,%s\n",argv[i],argv[i+1]);
+        if(argc>i+1){
+          maxNumber=atoi(argv[i+1]);
+          if(maxNumber<=0){
+            printf("Invalid argument, try --help\n");
+            return(-1);
+          }
+        }
+        else{
+          printf("Invalid argument, try --help\n");
+          return(-1);
+        }
+      }
+      else if(strcmp(argv[i],"--guesses")==0){
+        printf("%s,%s\n",argv[i],argv[i+1]);
+        if(argc>i+1){
+          maxGuesses=atoi(argv[i+1]);
+          if(maxGuesses<=0){
+            printf("Invalid argument, try --help\n");
+            return(-1);
+          }
+        }
+        else{
+          printf("Invalid argument, try --help\n");
+          return(-1);
+        }
+      }
+      else if(strcmp(argv[i],"--play")==0||strcmp(argv[i],"-p")==0){
+        skipMenu=1;
+      }
+    }
+  }
+  // If you specified the --play flag, start the game without showing the menu
+  if(skipMenu)PlayGame(maxNumber,maxGuesses);
   clrScrn();
   // Draw welcome screen/main menu
-  printf("Welcome to Guess My Number! (theVault C Edition) [v1.0.0]\n");
+  printf("Welcome to Guess My Number! (theVault C Edition) [v1.1.0]\n");
   printf("Select an option by entering the number for your choice and pressing enter.\n");
   printf("1. Play     2. Exit\n");
   g_menuChoice=fgetc(stdin);
