@@ -54,9 +54,9 @@ jobs:
       with:
         path: ~/theVaultC-linux-Checksums/*
         name: theVaultC-linux-Checksums
-  build-macos-intel:
+  build-macos:
 
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
     - uses: actions/checkout@v2

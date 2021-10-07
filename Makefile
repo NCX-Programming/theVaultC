@@ -72,6 +72,8 @@ mac: macX86 macARM
 	lipo -create bin/$(PROJECT4)X86 bin/$(PROJECT4)ARM -output bin/$(PROJECT4)-macOS
 	lipo -create bin/$(PROJECT5)X86 bin/$(PROJECT5)ARM -output bin/$(PROJECT5)-macOS
 	lipo -create bin/$(PROJECT6)X86 bin/$(PROJECT6)ARM -output bin/$(PROJECT6)-macOS
+	find bin -type f -name "*ARM*" -delete
+	find bin -type f -name "*X86*" -delete
 
 clean:
 	rm -rf bin/
