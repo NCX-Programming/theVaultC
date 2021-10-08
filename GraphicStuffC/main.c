@@ -21,16 +21,17 @@ int menuChoice=1;
 // Declare functions that need to always be accessible
 void Menu();
 // Start code
-void clrScrn() {
+int clrScrn() {
     // Screen clear fucntion, checks OS first for compatibility:tm:
     #ifdef _WIN32
         system("cls");
     #endif
     #ifdef unix
-        system("clear");
+        return(system("clear"));
+        //system("clear");
     #endif
     #ifdef __APPLE__
-        system( "clear" );
+        return(system( "clear" ));
     #endif
 }
 void Colors(){

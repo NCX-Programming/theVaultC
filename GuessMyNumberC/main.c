@@ -21,16 +21,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 // Declare variables
 int g_menuChoice;
 // Code start
-void clrScrn() {
+int clrScrn() {
   // Screen clear fucntion, checks OS first for compatibility:tm:
   #ifdef _WIN32
     system("cls");
   #endif
   #ifdef unix
-    system("clear");
+    return(system("clear"));
   #endif
   #ifdef __APPLE__
-    system( "clear" );
+    return(system( "clear" ));
   #endif
 }
 void PlayGame(int maxNumber,int maxGuesses){

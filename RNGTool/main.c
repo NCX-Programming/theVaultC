@@ -24,10 +24,10 @@ int clrScrn(){
     system("cls");
   #endif
   #ifdef unix
-    system("clear");
+    return(system("clear"));
   #endif
   #ifdef __APPLE__
-    system( "clear" );
+    return(system( "clear" ));
   #endif
   return(0);
 }
