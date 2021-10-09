@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <time.h>
 // Code start
@@ -31,17 +32,75 @@ int clrScrn(){
   #endif
   return(0);
 }
-int main(void){
+int getNum(int max,int min){
+  return(min+rand()%(max+1-min));
+}
+int main(int argc,char *argv[]){
   // Control variables
   int menuChoice;
   int execLoop=1;
+  int printToTerm=0;
   // RNG variables
   int usrSeed=0;
   int randomNumber=0;
   int maxNumber=100;
   int minNumber=0;
+  // Seed rand()
+  srand(time(0));
+  // Now that variables are set, check arguments
+  int i;
+  if(argc>1){
+    for(i=1;i<argc;i++){
+      if(strcmp(argv[i],"--help")==0||strcmp(argv[i],"-h")==0){
+        printf("\nRNGTool Usage\n\n");
+        printf("./RNGTool [--help | -h] [--version | -v] [--generate | -g] [--max] <int> [--guesses] <int>\n\n");
+        printf("--generate, Use the current values to generate a number, skipping the menus\n\n");
+        printf("--max, Specify a maximum number from the terminal, must be larger than min\n\n");
+        printf("--min, Specify a minimum number from the terminal, must be smaller than max\n\n");
+        printf("RNGTool currently does not support seeding outside of the menus.\n\n");
+        return(0);
+      }
+      else if(strcmp(argv[1],"--version")==0||strcmp(argv[1],"-v")==0){
+        printf("\nRNGTool by NCX Programming\n");
+        printf("Version 0.4.0\n\n");
+        return(0);
+      }
+      else if(strcmp(argv[i],"--max")==0){
+        if(argc>i+1){
+          maxNumber=atoi(argv[i+1]);
+          if(maxNumber<=minNumber||maxNumber<=0){
+            printf("Invalid argument, try --help\n");
+            return(-1);
+          }
+        }
+        else{
+          printf("Invalid argument, try --help\n");
+          return(-1);
+        }
+      }
+      else if(strcmp(argv[i],"--min")==0){
+        if(argc>i+1){
+          minNumber=atoi(argv[i+1]);
+          if(maxNumber<=minNumber){
+            printf("Invalid argument, try --help\n");
+            return(-1);
+          }
+        }
+        else{
+          printf("Invalid argument, try --help\n");
+          return(-1);
+        }
+      }
+      else if(strcmp(argv[i],"--generate")==0||strcmp(argv[i],"-g")==0)printToTerm=1;
+    }
+  }
+  // Check to see if we should be skipping the menus and printing now
+  if(printToTerm){
+    printf("Your random number is: %d\n",getNum(maxNumber,minNumber));
+    return(0);
+  }
   clrScrn();
-  printf("Welcome to RNGTool v0.3.0\n");
+  printf("Welcome to RNGTool v0.4.0\n");
   usleep(1000000);
   while(execLoop==1){
     menuChoice=0;
@@ -92,8 +151,7 @@ int main(void){
         break;
       case 52:
         // Get the random number, using the max/min numbers and the seed provided by the user
-
-        randomNumber=minNumber+rand()%(maxNumber+1-minNumber);
+        randomNumber=getNum(maxNumber,minNumber);
         break;
       case 53:
         execLoop=0;
