@@ -24,6 +24,15 @@ linux:
 	$(CC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
 	cp WordGenerator/words.txt bin/words.txt
 
+win:
+	mkdir bin
+	cl /Wall $(PROJECT1)/main.c /link /O2 /out:$(PROJECT1).exe
+	cl /Wall $(PROJECT2)/main.c /link /O2 /out:$(PROJECT2).exe
+	cl /Wall $(PROJECT3)/main.c /link /O2 /out:$(PROJECT3).exe
+	cl /Wall $(PROJECT5)/main.c /link /O2 /out:$(PROJECT5).exe
+	cl /Wall $(PROJECT6)/main.c /link /O2 /out:$(PROJECT6).exe
+	cp WordGenerator/words.txt bin/words.txt
+
 win64:
 	mkdir -p bin/
 	x86_64-w64-mingw32-gcc $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT1)64.exe
