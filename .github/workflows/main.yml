@@ -95,7 +95,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build For Windows
       id: build-windows-server
-      run: make win
+      run: ./MakeWin.bat
     - name: Pack Build Files and Generate Checksums
       run: |
         mkdir ~/theVaultC-windows
