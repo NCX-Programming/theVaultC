@@ -26,11 +26,11 @@ linux:
 
 win:
 	mkdir bin
-	cl /Wall $(PROJECT1)\\main.c /link /O2 /out:bin\\$(PROJECT1).exe
-	cl /Wall $(PROJECT2)\\main.c /link /O2 /out:bin\\$(PROJECT2).exe
-	cl /Wall $(PROJECT3)\\main.c /link /O2 /out:bin\\$(PROJECT3).exe
-	cl /Wall $(PROJECT5)\\main.c /link /O2 /out:bin\\$(PROJECT5).exe
-	cl /Wall $(PROJECT6)\\main.c /link /O2 /out:bin\\$(PROJECT6).exe
+	cl /Wall $(PROJECT1)\main.c /link /O2 /out:bin\$(PROJECT1).exe
+	cl /Wall $(PROJECT2)\main.c /link /O2 /out:bin\$(PROJECT2).exe
+	cl /Wall $(PROJECT3)\main.c /link /O2 /out:bin\$(PROJECT3).exe
+	cl /Wall $(PROJECT5)\main.c /link /O2 /out:bin\$(PROJECT5).exe
+	cl /Wall $(PROJECT6)\main.c /link /O2 /out:bin\$(PROJECT6).exe
 	cp WordGenerator/words.txt bin/words.txt
 
 win64:
