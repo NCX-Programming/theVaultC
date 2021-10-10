@@ -95,7 +95,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build For Windows
       id: build-windows-server
-      run: ./MakeWin.bat
+      run: |
+        "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+        ./MakeWin.bat
     - name: Pack Build Files and Generate Checksums
       run: |
         mkdir ~/theVaultC-windows
