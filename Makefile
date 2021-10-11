@@ -1,7 +1,7 @@
 # Basic settings
 CC = gcc
 CFLAGS = -Wall -O2
-WINFLAGS = /GS- /TC /analyze- /W3 /Gy /Zi /Gm- /O1 /fp:fast /GF /WX- /Gd /Oy- /Oi /MD /Os
+WINFLAGS = /W3 /O1 /GS-
 CFLAGS86 = -Wall -O2 -target x86_64-apple-macos10.12
 CFLAGSARM = -Wall -O2 -target arm64-apple-macos11
 DEBUG =
