@@ -16,8 +16,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <time.h>
+// Code to use different headers in Windows
+#ifdef _WIN32
+  #include <Windows.h>
+  #define usleep(x) Sleep(x/1000)
+#else
+  #include <unistd.h>
+#endif
 // Code start
 int clrScrn(){
   // Screen clear fucntion, checks OS first for compatibility:tm:
