@@ -57,38 +57,6 @@ jobs:
         name: theVaultC-linux-Checksums
   build-windows:
 
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Get Dependencies
-      run: |
-        sudo apt update && \
-        sudo apt install -y mingw-w64
-    - name: Build For Windows
-      id: build-windows
-      run: make win64
-    - name: Pack Build Files and Generate Checksums
-      run: |
-        mkdir ~/theVaultC-windows
-        mv bin/* ~/theVaultC-windows
-        cd ~
-        tar -cvf theVaultC-windows.tar theVaultC-windows/
-        mkdir ~/theVaultC-windows-Checksums
-        shasum -a 256 ~/theVaultC-windows.tar | sed 's/ .*//g' > ~/theVaultC-windows-Checksums/theVaultC-windows.tar.sha256
-        openssl md5 ~/theVaultC-windows.tar | sed 's/.* //' > ~/theVaultC-windows-Checksums/theVaultC-windows.tar.md5
-    - name: Publish Build Files
-      uses: actions/upload-artifact@v2
-      with:
-        path: ~/theVaultC-windows.tar
-        name: theVaultC-windows
-    - name: Publish Checksums
-      uses: actions/upload-artifact@v2
-      with:
-        path: ~/theVaultC-windows-Checksums/*
-        name: theVaultC-windows-Checksums
-  build-windows-server:
-
     runs-on: windows-latest
 
     steps:
@@ -96,7 +64,7 @@ jobs:
     - name: Enable Developer Command Prompt
       uses: ilammy/msvc-dev-cmd@v1.10.0
     - name: Build For Windows
-      id: build-windows-server
+      id: build-windows
       run: make win
     - name: Pack Build Files and Generate Checksums
       run: |
