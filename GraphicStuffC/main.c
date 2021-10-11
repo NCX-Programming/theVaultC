@@ -15,7 +15,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+// Code to use different headers in Windows
+#ifdef _WIN32
+  #include <Windows.h>
+  #define sleep(x) Sleep(x*1000)
+#else
+  #include <unistd.h>
+#endif
 // Declare variables
 int menuChoice=1;
 // Declare functions that need to always be accessible
