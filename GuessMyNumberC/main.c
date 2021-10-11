@@ -148,7 +148,7 @@ int main(int argc,char *argv[]){
   if(skipMenu)PlayGame(maxNumber,maxGuesses);
   clrScrn();
   // Draw welcome screen/main menu
-  printf("Welcome to Guess My Number! (theVault C Edition) [v1.1.0]\n");
+  printf("Welcome to Guess My Number! (theVault C Edition) [v1.1.1]\n");
   printf("Select an option by entering the number for your choice and pressing enter.\n");
   printf("1. Play     2. Exit\n");
   g_menuChoice=fgetc(stdin);

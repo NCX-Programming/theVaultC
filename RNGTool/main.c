@@ -24,6 +24,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #else
   #include <unistd.h>
 #endif
+// Version number for easy incrementing
+char g_version[7]="0.4.1";
 // Code start
 int clrScrn(){
   // Screen clear fucntion, checks OS first for compatibility:tm:
@@ -68,7 +70,7 @@ int main(int argc,char *argv[]){
       }
       else if(strcmp(argv[1],"--version")==0||strcmp(argv[1],"-v")==0){
         printf("\nRNGTool by NCX Programming\n");
-        printf("Version 0.4.0\n\n");
+        printf("Version %s\n\n",g_version);
         return(0);
       }
       else if(strcmp(argv[i],"--max")==0){
@@ -106,7 +108,7 @@ int main(int argc,char *argv[]){
     return(0);
   }
   clrScrn();
-  printf("Welcome to RNGTool v0.4.0\n");
+  printf("Welcome to RNGTool v%s\n",g_version);
   usleep(1000000);
   while(execLoop==1){
     menuChoice=0;

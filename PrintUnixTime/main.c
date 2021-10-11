@@ -17,6 +17,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <time.h>
 // Code start
 int main(void){
-  printf("Time in seconds since 1 January 1970: %d\n",time(0));
+  printf("Time in seconds since 1 January 1970: %ld\n",time(0));
   return(0);
 }

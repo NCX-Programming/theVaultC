@@ -84,7 +84,7 @@ int main(int argc,char *argv[]){
     }
     else if(strcmp(argv[1],"--version")==0||strcmp(argv[1],"-v")==0){
       printf("\nWordGenerator by NCX Programming\n");
-      printf("Version 1.0.1\n\n");
+      printf("Version 1.0.2\n\n");
     }
     else {
       numPrintWords=atoi(argv[1]);
