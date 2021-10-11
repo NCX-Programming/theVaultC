@@ -70,15 +70,14 @@ jobs:
       run: |
         mkdir D:\a\theVaultC\theVaultC-windows
         mv D:\a\theVaultC\theVaultC\bin\* D:\a\theVaultC\theVaultC-windows
-        cd D:\a\theVaultC
-        7z a -tzip theVaultC-windows.zip theVaultC-windows/
+        tar -cvf theVaultC-windows.tar D:\a\theVaultC\theVaultC-windows\*
         mkdir D:\a\theVaultC\theVaultC-windows-Checksums
-        shasum -a 256 D:\a\theVaultC\theVaultC-windows.zip | sed 's/ .*//g' > D:\a\theVaultC\theVaultC-windows-Checksums\theVaultC-windows.zip.sha256
-        openssl md5 D:\a\theVaultC\theVaultC-windows.zip | sed 's/.* //' > D:\a\theVaultC\theVaultC-windows-Checksums\theVaultC-windows.zip.md5
+        shasum -a 256 D:\a\theVaultC\theVaultC-windows.tar | sed 's/ .*//g' > D:\a\theVaultC\theVaultC-windows-Checksums\theVaultC-windows.tar.sha256
+        openssl md5 D:\a\theVaultC\theVaultC-windows.tar | sed 's/.* //' > D:\a\theVaultC\theVaultC-windows-Checksums\theVaultC-windows.tar.md5
     - name: Publish Build Files
       uses: actions/upload-artifact@v2
       with:
-        path: D:\a\theVaultC\theVaultC-windows.zip
+        path: D:\a\theVaultC\theVaultC-windows.tar
         name: theVaultC-windows
     - name: Publish Checksums
       uses: actions/upload-artifact@v2
