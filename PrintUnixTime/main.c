@@ -15,11 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <time.h>
-// Declare variables
-int UnixTime;
 // Code start
 int main(void){
-  UnixTime=time(0);
-  printf("Time in seconds since 1 January 1970: %d\n",UnixTime);
+  printf("Time in seconds since 1 January 1970: %d\n",time(0));
   return(0);
 }
