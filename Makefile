@@ -1,6 +1,7 @@
 # Basic settings
 CC = gcc
 CFLAGS = -Wall -O2
+WINFLAGS = /GS- /TC /analyze- /W3 /Gy /Zi /Gm- /O1 /fp:fast /GF /WX- /Gd /Oy- /Oi /MD /Os
 CFLAGS86 = -Wall -O2 -target x86_64-apple-macos10.12
 CFLAGSARM = -Wall -O2 -target arm64-apple-macos11
 DEBUG =
@@ -26,20 +27,11 @@ linux:
 
 win:
 	mkdir bin
-	cl /Wall GraphicStuffC\main.c /link /O2 /out:bin\GraphicStuffC.exe
-	cl /Wall GuessMyNumberC\main.c /link /O2 /out:bin\GuessMyNumberC.exe
-	cl /Wall PrintUnixTime\main.c /link /O2 /out:bin\PrintUnixTime.exe
-	cl /Wall RNGTool\main.c /link /O2 /out:bin\RNGTool.exe
-	cl /Wall WordGenerator\main.c /link /O2 /out:bin\WordGenerator.exe
-	cp WordGenerator/words.txt bin/words.txt
-
-win64:
-	mkdir -p bin/
-	x86_64-w64-mingw32-gcc $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT1)64.exe
-	x86_64-w64-mingw32-gcc $(PROJECT2)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT2)64.exe
-	x86_64-w64-mingw32-gcc $(PROJECT3)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT3)64.exe
-	x86_64-w64-mingw32-gcc $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)64.exe
-	x86_64-w64-mingw32-gcc $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)64.exe
+	cl $(WINFLAGS) $(PROJECT1)\main.c /link /out:bin\$(PROJECT1).exe
+	cl $(WINFLAGS) $(PROJECT2)\main.c /link /out:bin\$(PROJECT2).exe
+	cl $(WINFLAGS) $(PROJECT3)\main.c /link /out:bin\$(PROJECT3).exe
+	cl $(WINFLAGS) $(PROJECT5)\main.c /link /out:bin\$(PROJECT5).exe
+	cl $(WINFLAGS) $(PROJECT6)\main.c /link /out:bin\$(PROJECT6).exe
 	cp WordGenerator/words.txt bin/words.txt
 
 # Note that the macOS executables can only be compiled on macOS.
