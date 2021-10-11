@@ -16,8 +16,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 #include <string.h>
+// Code to use different headers in Windows
+#ifdef _WIN32
+  #include <Windows.h>
+  #define sleep(x) Sleep(x*1000)
+  #define usleep(x) Sleep(x/1000)
+#else
+  #include <unistd.h>
+#endif
 // Declare variables
 int g_menuChoice;
 // Code start
