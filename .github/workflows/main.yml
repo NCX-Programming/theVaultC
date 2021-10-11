@@ -87,6 +87,36 @@ jobs:
       with:
         path: ~/theVaultC-windows-Checksums/*
         name: theVaultC-windows-Checksums
+  build-windows-server:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.10.0
+    - name: Build For Windows
+      id: build-windows-server
+      run: make win
+    - name: Pack Build Files and Generate Checksums
+      run: |
+        mkdir ~/theVaultC-windows
+        mv bin/* ~/theVaultC-windows
+        cd ~
+        tar -cvf theVaultC-windows.tar theVaultC-windows/
+        mkdir ~/theVaultC-windows-Checksums
+        shasum -a 256 ~/theVaultC-windows.tar | sed 's/ .*//g' > ~/theVaultC-windows-Checksums/theVaultC-windows.tar.sha256
+        openssl md5 ~/theVaultC-windows.tar | sed 's/.* //' > ~/theVaultC-windows-Checksums/theVaultC-windows.tar.md5
+    - name: Publish Build Files
+      uses: actions/upload-artifact@v2
+      with:
+        path: ~/theVaultC-windows.tar
+        name: theVaultC-windows2
+    - name: Publish Checksums
+      uses: actions/upload-artifact@v2
+      with:
+        path: ~/theVaultC-windows-Checksums/*
+        name: theVaultC-windows2-Checksums
   build-macos:
 
     runs-on: macos-11

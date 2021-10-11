@@ -24,6 +24,15 @@ linux:
 	$(CC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
 	cp WordGenerator/words.txt bin/words.txt
 
+win:
+	mkdir bin
+	cl /Wall GraphicStuffC\main.c /link /O2 /out:bin\GraphicStuffC.exe
+	cl /Wall GuessMyNumberC\main.c /link /O2 /out:bin\GuessMyNumberC.exe
+	cl /Wall PrintUnixTime\main.c /link /O2 /out:bin\PrintUnixTime.exe
+	cl /Wall RNGTool\main.c /link /O2 /out:bin\RNGTool.exe
+	cl /Wall WordGenerator\main.c /link /O2 /out:bin\WordGenerator.exe
+	cp WordGenerator/words.txt bin/words.txt
+
 win64:
 	mkdir -p bin/
 	x86_64-w64-mingw32-gcc $(PROJECT1)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT1)64.exe
