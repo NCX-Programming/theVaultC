@@ -27,6 +27,23 @@ int countWords(char *buffer,int size){
   }
   return numWords;
 }
+int printWords(int numWords,int nCountedWords,int numPrintWords,char *wordArray[],int printType){
+  int i;
+  if(!numPrintWords)numPrintWords=1+rand()%(7-1);
+  printf("Out of %d total words, your %d words are:\n",numWords,numPrintWords);
+  if(printType){
+    for(i=0;i<numPrintWords;i++){
+      printf("%s\n",wordArray[rand()%nCountedWords]);
+    }
+  }
+  else{
+    for(i=0;i<numPrintWords;i++){
+      printf("%s ",wordArray[rand()%nCountedWords]);
+    }
+    printf("\n");
+  }
+  return(0);
+}
 int main(int argc,char *argv[]){
   // Seed rand()
   srand(time(0));
@@ -58,8 +75,8 @@ int main(int argc,char *argv[]){
   int nextCharBeginsWord=1;
   int nCountedWords=0;
   int i;
-  int ii;
-  int numPrintWords;
+  int numPrintWords=0;
+  int printType=0;
   // Loop through the entire buffer based on the number of words
   // returned by countWords() and figure out the starting
   // position of each word in the array
@@ -72,44 +89,33 @@ int main(int argc,char *argv[]){
     }
     else nextCharBeginsWord=0;
   }
-  if(argc==2){
-    // If an argument was supplied, check if it's help, and if it isn't then
-    // use it as the number of words to generate
-    if(strcmp(argv[1],"--help")==0||strcmp(argv[1],"-h")==0){
-      printf("\nWordGenerator Usage\n\n");
-      printf("./WordGenerator [--help] [--version] [int]\n");
-      printf("                [-h]     [-v]\n\n");
-      printf("Specify an integer to generate that many words.\n");
-      printf("If no integer is supplied, a random number of words will be generated.\n\n");
-    }
-    else if(strcmp(argv[1],"--version")==0||strcmp(argv[1],"-v")==0){
-      printf("\nWordGenerator by NCX Programming\n");
-      printf("Version 1.0.2\n\n");
-    }
-    else {
-      numPrintWords=atoi(argv[1]);
-      if(numPrintWords==0){
-        printf("Invalid argument, try --help\n");
-        return(1);
+  if(argc>1){
+    for(i=1;i<argc;i++){
+      if(strcmp(argv[i],"--help")==0||strcmp(argv[i],"-h")==0){
+        printf("\nWordGenerator Usage\n\n");
+        printf("./WordGenerator [--help] [--version] [--nl] [int]\n");
+        printf("                [-h]     [-v]\n\n");
+        printf("Specify an integer to generate that many words.\n");
+        printf("If no integer is supplied, a random number of words will be generated.\n\n");
+        printf("--nl, add a newline between each generated word\n\n");
+        return(0);
       }
-      printf("Out of %d total words, your %d words are:\n",numWords,numPrintWords);
-      for(ii=0;ii<numPrintWords;ii++){
-        printf("%s ",wordArray[rand()%nCountedWords]);
+      else if(strcmp(argv[1],"--version")==0||strcmp(argv[1],"-v")==0){
+        printf("\nWordGenerator by NCX Programming\n");
+        printf("Version 1.1.0\n\n");
+        return(0);
       }
-      printf("\n");
+      else if(strcmp(argv[i],"--nl")==0){
+        printType=1;
+      }
+      else{
+        if((numPrintWords=atoi(argv[i]))==0){
+          printf("Invalid argument, try --help\n");
+          return(-1);
+        }
+      }
     }
   }
-  else if(argc==1){
-    // If no argument was supplied, generate a random number of words to generate
-    numPrintWords=1+rand()%(7-1);
-    printf("Out of %d total words, your %d words are:\n",numWords,numPrintWords);
-    for(ii=0;ii<numPrintWords;ii++){
-      printf("%s ",wordArray[rand()%nCountedWords]);
-    }
-    printf("\n");
-  }
-  else {
-    printf("Invalid arguments, try --help\n");
-  }
+  printWords(numWords,nCountedWords,numPrintWords,wordArray,printType);
   return(0);
 }
