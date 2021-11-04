@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
   #include <unistd.h>
 #endif
 // Version number for easy incrementing
-char g_version[7]="0.4.1";
+char g_version[7]="0.4.1b";
 // Code start
 int clrScrn(){
   // Screen clear fucntion, checks OS first for compatibility:tm:
@@ -61,7 +61,7 @@ int main(int argc,char *argv[]){
     for(i=1;i<argc;i++){
       if(strcmp(argv[i],"--help")==0||strcmp(argv[i],"-h")==0){
         printf("\nRNGTool Usage\n\n");
-        printf("./RNGTool [--help | -h] [--version | -v] [--generate | -g] [--max] <int> [--guesses] <int>\n\n");
+        printf("./RNGTool [--help | -h] [--version | -v] [--generate | -g] [--max] <int> [--min] <int>\n\n");
         printf("--generate, Use the current values to generate a number, skipping the menus\n\n");
         printf("--max, Specify a maximum number from the terminal, must be larger than min\n\n");
         printf("--min, Specify a minimum number from the terminal, must be smaller than max\n\n");
