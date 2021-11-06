@@ -12,6 +12,7 @@ PROJECT3 = PrintUnixTime
 PROJECT4 = RainbowType
 PROJECT5 = RNGTool
 PROJECT6 = WordGenerator
+PROJECT7 = LetterGenerator
 
 all: linux win64
 
@@ -24,6 +25,7 @@ linux:
 	$(CC) $(PROJECT5)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT5)
 	$(CC) $(PROJECT6)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT6)
 	cp WordGenerator/words.txt bin/words.txt
+	$(CC) $(PROJECT7)/main.c $(CFLAGS) $(DEBUG) -o bin/$(PROJECT7)
 
 win:
 	mkdir bin
@@ -33,6 +35,7 @@ win:
 	cl $(WINFLAGS) $(PROJECT5)\main.c /link /out:bin\$(PROJECT5).exe
 	cl $(WINFLAGS) $(PROJECT6)\main.c /link /out:bin\$(PROJECT6).exe
 	cp WordGenerator/words.txt bin/words.txt
+	cl $(WINFLAGS) $(PROJECT7)\main.c /link /out:bin\$(PROJECT7).exe
 
 # Note that the macOS executables can only be compiled on macOS.
 # Also note that Intel builds can only be compiled on Intel Macs,
@@ -46,6 +49,7 @@ macX86:
 	$(CC) $(PROJECT5)/main.c $(CFLAGS86) $(DEBUG) -o bin/$(PROJECT5)X86
 	$(CC) $(PROJECT6)/main.c $(CFLAGS86) $(DEBUG) -o bin/$(PROJECT6)X86
 	cp WordGenerator/words.txt bin/words.txt
+	$(CC) $(PROJECT7)/main.c $(CFLAGS86) $(DEBUG) -o bin/$(PROJECT7)X86
 
 macARM:
 	mkdir -p bin/
@@ -56,6 +60,7 @@ macARM:
 	$(CC) $(PROJECT5)/main.c $(CFLAGSARM) $(DEBUG) -o bin/$(PROJECT5)ARM
 	$(CC) $(PROJECT6)/main.c $(CFLAGSARM) $(DEBUG) -o bin/$(PROJECT6)ARM
 	cp WordGenerator/words.txt bin/words.txt
+	$(CC) $(PROJECT7)/main.c $(CFLAGSARM) $(DEBUG) -o bin/$(PROJECT7)ARM
 
 mac: macX86 macARM
 	lipo -create bin/$(PROJECT1)X86 bin/$(PROJECT1)ARM -output bin/$(PROJECT1)-macOS
@@ -64,6 +69,7 @@ mac: macX86 macARM
 	lipo -create bin/$(PROJECT4)X86 bin/$(PROJECT4)ARM -output bin/$(PROJECT4)-macOS
 	lipo -create bin/$(PROJECT5)X86 bin/$(PROJECT5)ARM -output bin/$(PROJECT5)-macOS
 	lipo -create bin/$(PROJECT6)X86 bin/$(PROJECT6)ARM -output bin/$(PROJECT6)-macOS
+	lipo -create bin/$(PROJECT7)X86 bin/$(PROJECT7)ARM -output bin/$(PROJECT7)-macOS
 	find bin -type f -name "*ARM*" -delete
 	find bin -type f -name "*X86*" -delete
 
