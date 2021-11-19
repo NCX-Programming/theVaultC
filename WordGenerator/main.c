@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 #include <string.h>
 #include <time.h>
 // Version number for easy incrementing
-char g_version[7]="1.2.0";
+char g_version[7]="1.2.0b";
 // Code start
 int countWords(char *buffer,int size){
   // Count number of words in the file based on newlines
@@ -111,6 +111,7 @@ int main(int argc,char *argv[]){
       fp=fopen("/var/lib/dict/words","rb");
       if(fp==NULL){
         printf("\e[0;91mError:\e[0m Could not find the system dictionary file! Exiting...\n");
+        return(-1);
       }
     }
   }
